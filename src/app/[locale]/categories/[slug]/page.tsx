@@ -1,11 +1,16 @@
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
-import { getCategoryBySlug } from "@/entities/category/api";
+import { getCategories, getCategoryBySlug } from "@/entities/category/api";
 import { getProductsByCategory } from "@/entities/product/api";
 import { ProductGrid } from "@/widgets/product-grid";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
+
+export async function generateStaticParams() {
+  const categories = await getCategories();
+  return categories.map((c) => ({ slug: c.slug }));
+}
 
 export async function generateMetadata({ params }: Props) {
   const { locale, slug } = await params;

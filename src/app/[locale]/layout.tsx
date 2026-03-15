@@ -1,4 +1,5 @@
-import { setRequestLocale } from "next-intl/server";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages, setRequestLocale } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
@@ -33,12 +34,13 @@ export default async function LocaleLayout({ children, params }: Props) {
     notFound();
   }
   setRequestLocale(locale);
+  const messages = await getMessages();
 
   return (
-    <>
+    <NextIntlClientProvider locale={locale} messages={messages}>
       <Header />
       <main className="min-h-screen">{children}</main>
       <Footer />
-    </>
+    </NextIntlClientProvider>
   );
 }

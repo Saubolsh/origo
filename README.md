@@ -60,6 +60,13 @@ npm run build
 npm start
 ```
 
+## Deploy (GitHub Pages)
+
+The app is set up for static export and deployment via GitHub Actions. Pushing to `main` runs the workflow in `.github/workflows/deploy.yml`: it builds the site and deploys the `out` directory to GitHub Pages.
+
+- **Project site** (e.g. `username.github.io/origo`): `NEXT_PUBLIC_BASE_PATH` is set in the workflow to `/<repository-name>` so links and assets work under the project path. No local change needed.
+- **User/org site** (e.g. `username.github.io`): set `NEXT_PUBLIC_BASE_PATH=` (empty) in the workflow and ensure **Settings → Pages → Source** is **GitHub Actions**.
+
 ## Data
 
 Catalog and categories use in-memory mock data in `entities/*/api/data.ts`. Types and API functions are structured so you can swap in a CMS, REST API, or database later without changing UI.
