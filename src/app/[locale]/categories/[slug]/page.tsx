@@ -3,7 +3,7 @@ import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
 import { getCategories, getCategoryBySlug } from "@/entities/category/api";
 import { getProductsByCategory } from "@/entities/product/api";
-import { ProductGrid } from "@/widgets/product-grid";
+import { ProductCatalog } from "@/widgets/product-catalog";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -44,10 +44,8 @@ export default async function CategoryPage({ params }: Props) {
       {category.description && (
         <p className="mt-2 text-origo-silver">{category.description}</p>
       )}
-      <ProductGrid
-        products={products}
-        className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
-      />
+      <ProductCatalog products={products} />
     </div>
   );
 }
+

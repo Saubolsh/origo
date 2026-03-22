@@ -57,7 +57,21 @@
     "title": "Өнімдер",
     "description": "Барлық коллекциялық өнімдерді шолу — модельдер, фигуралар, мүсіндер, аксессуарлар.",
     "subtitle": "Коллекцияларымыздың толық каталогын шолыңыз.",
-    "notFound": "Өнім табылмады"
+    "notFound": "Өнім табылмады",
+    "filters": {
+      "brands": "Брендтер",
+      "price": "Баға",
+      "priceUpTo": "{value} дейін",
+      "priceAbove": "{value} жоғары",
+      "productCount_one": "өнім",
+      "productCount_other": "өнім"
+    },
+    "sort": {
+      "popular": "Танымал",
+      "newest": "Жаңа",
+      "price-asc": "Арзаннан қымбатқа",
+      "price-desc": "Қымбаттан арзанға"
+    }
   },
   "product": {
     "descriptionLabel": "Сипаттама",

@@ -4,8 +4,6 @@ import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 
 const footerKeys = [
-  { href: "/products", key: "nav.products" as const },
-  { href: "/categories", key: "nav.categories" as const },
   { href: "/about", key: "nav.about" as const },
   { href: "/contact", key: "nav.contact" as const },
 ] as const;

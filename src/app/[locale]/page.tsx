@@ -1,6 +1,5 @@
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
 import { getCategories } from "@/entities/category/api";
 import { getProducts } from "@/entities/product/api";
 import { CategoryGrid } from "@/widgets/category-grid";
@@ -19,7 +18,6 @@ export default async function HomePage({ params }: Props) {
   const featuredProducts = products.slice(0, 6);
 
   const t = await getTranslations("home");
-  const tCommon = await getTranslations("common");
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -40,28 +38,12 @@ export default async function HomePage({ params }: Props) {
           categories={categories}
           className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
         />
-        <div className="mt-8 text-center">
-          <Link
-            href="/categories"
-            className="text-origo-accent hover:underline"
-          >
-            {tCommon("viewAllCategories")}
-          </Link>
-        </div>
       </section>
 
       <section className="mt-20">
-        <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-semibold text-origo-white">
-            {t("featuredProducts")}
-          </h2>
-          <Link
-            href="/products"
-            className="text-origo-accent hover:underline"
-          >
-            {tCommon("viewAll")}
-          </Link>
-        </div>
+        <h2 className="text-2xl font-semibold text-origo-white">
+          {t("featuredProducts")}
+        </h2>
         <ProductGrid
           products={featuredProducts}
           className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"

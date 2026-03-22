@@ -57,7 +57,21 @@
     "title": "Товары",
     "description": "Все коллекционные товары — модели, фигурки, статуэтки, аксессуары.",
     "subtitle": "Полный каталог коллекции.",
-    "notFound": "Товар не найден"
+    "notFound": "Товар не найден",
+    "filters": {
+      "brands": "Бренды",
+      "price": "Цена",
+      "priceUpTo": "до {value}",
+      "priceAbove": "более {value}",
+      "productCount_one": "товар",
+      "productCount_other": "товаров"
+    },
+    "sort": {
+      "popular": "Популярные",
+      "newest": "Новинки",
+      "price-asc": "Сначала дешевые",
+      "price-desc": "Сначала дорогие"
+    }
   },
   "product": {
     "descriptionLabel": "Описание",

@@ -57,7 +57,21 @@
     "title": "Products",
     "description": "Browse all collectible products — models, figures, statues, accessories.",
     "subtitle": "Browse our full catalog of collectibles.",
-    "notFound": "Product not found"
+    "notFound": "Product not found",
+    "filters": {
+      "brands": "Brands",
+      "price": "Price",
+      "priceUpTo": "Up to {value}",
+      "priceAbove": "Above {value}",
+      "productCount_one": "product",
+      "productCount_other": "products"
+    },
+    "sort": {
+      "popular": "Popular",
+      "newest": "New arrivals",
+      "price-asc": "Price: low to high",
+      "price-desc": "Price: high to low"
+    }
   },
   "product": {
     "descriptionLabel": "Description",

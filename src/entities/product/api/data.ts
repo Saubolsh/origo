@@ -1,7 +1,10 @@
 import type { Product } from "../types";
 
 export const productsData: Product[] = [
-  // ─── Engineering Model ─────────────────────────────────────────────────
+  // ═══════════════════════════════════════════════════════════════════════════
+  //  ENGINEERING MODELS
+  // ═══════════════════════════════════════════════════════════════════════════
+
   {
     id: "prod-eng-1",
     name: "V8 Metal Engine Model",
@@ -30,7 +33,119 @@ export const productsData: Product[] = [
     movingParts: true,
     materials: ["metal", "plastic"],
   },
-  // ─── Collectible Figure ─────────────────────────────────────────────────
+  {
+    id: "prod-eng-2",
+    name: "Inline-4 Transparent Engine",
+    slug: "inline-4-transparent-engine",
+    shortDescription: "See-through 1:3 engine with LED ignition simulation.",
+    description:
+      "A beautifully crafted transparent inline-4 engine model at 1:3 scale. Features LED-simulated ignition sequence and removable cylinder head for educational purposes.",
+    price: 18900,
+    currency: "USD",
+    brand: "MetalWorks",
+    categoryId: "cat-engineering",
+    productType: "engineering-model",
+    sku: "MW-I4-002",
+    availability: "in-stock",
+    coverImage:
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800",
+    gallery: [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800",
+    ],
+    badges: ["New"],
+    specifications: { Scale: "1:3", "Assembly time": "~10 hours" },
+    engineType: "Inline-4",
+    partCount: 210,
+    assemblyRequired: true,
+    movingParts: true,
+    materials: ["acrylic", "metal"],
+  },
+  {
+    id: "prod-eng-3",
+    name: "Flat-6 Boxer Engine Kit",
+    slug: "flat-6-boxer-engine-kit",
+    shortDescription: "Precision 1:4 replica of the iconic boxer layout.",
+    description:
+      "Premium flat-6 boxer engine model inspired by legendary sports car powertrains. All-metal construction with functional timing chain and cooling fan.",
+    price: 34900,
+    currency: "USD",
+    brand: "GearBox Studio",
+    categoryId: "cat-engineering",
+    productType: "engineering-model",
+    sku: "GBS-F6-001",
+    availability: "preorder",
+    coverImage:
+      "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800",
+    gallery: [
+      "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800",
+    ],
+    badges: ["Limited"],
+    specifications: { Scale: "1:4", "Assembly time": "~20 hours" },
+    engineType: "Flat-6",
+    partCount: 450,
+    assemblyRequired: true,
+    movingParts: true,
+    materials: ["metal"],
+  },
+  {
+    id: "prod-eng-4",
+    name: "W16 Hypercar Engine Display",
+    slug: "w16-hypercar-engine-display",
+    shortDescription: "Museum-grade 1:4 W16 quad-turbo masterpiece.",
+    description:
+      "The ultimate engineering model: a 1:4 scale W16 quad-turbocharged engine with over 600 precision parts. Pre-assembled option available. Includes glass display case.",
+    price: 89900,
+    currency: "USD",
+    brand: "GearBox Studio",
+    categoryId: "cat-engineering",
+    productType: "engineering-model",
+    sku: "GBS-W16-001",
+    availability: "in-stock",
+    coverImage:
+      "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800",
+    gallery: [
+      "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800",
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800",
+    ],
+    badges: ["Exclusive", "Limited"],
+    specifications: { Scale: "1:4", "Assembly time": "~40 hours" },
+    engineType: "W16",
+    partCount: 620,
+    assemblyRequired: true,
+    movingParts: true,
+    materials: ["metal", "carbon fiber"],
+  },
+  {
+    id: "prod-eng-5",
+    name: "Steam Engine Desktop Model",
+    slug: "steam-engine-desktop-model",
+    shortDescription: "Functional mini steam engine with brass boiler.",
+    description:
+      "A working desktop steam engine with a polished brass boiler and flywheel. Uses water and a small alcohol burner. Great conversation starter.",
+    price: 7900,
+    currency: "USD",
+    brand: "VintageMotion",
+    categoryId: "cat-engineering",
+    productType: "engineering-model",
+    sku: "VM-STEAM-001",
+    availability: "in-stock",
+    coverImage:
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800",
+    gallery: [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800",
+    ],
+    specifications: { Scale: "Desktop", "Assembly time": "~2 hours" },
+    engineType: "Steam",
+    partCount: 45,
+    assemblyRequired: true,
+    movingParts: true,
+    materials: ["brass", "steel"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  //  COLLECTIBLE FIGURES
+  // ═══════════════════════════════════════════════════════════════════════════
+
   {
     id: "prod-fig-1",
     name: "Anime Hero Figurine — Limited",
@@ -59,7 +174,117 @@ export const productsData: Product[] = [
     accessoriesIncluded: ["display base", "extra hands"],
     heightCm: 24,
   },
-  // ─── Statue ─────────────────────────────────────────────────────────────
+  {
+    id: "prod-fig-2",
+    name: "Cyber Samurai — Premium Edition",
+    slug: "cyber-samurai-premium-edition",
+    shortDescription: "1/6 scale cyberpunk samurai with LED katana.",
+    description:
+      "Stunning 1/6 scale cyberpunk samurai figure with a light-up katana blade (USB rechargeable). Highly detailed armor with metallic finish.",
+    price: 32900,
+    currency: "USD",
+    brand: "AnimeCollect",
+    categoryId: "cat-figures",
+    productType: "collectible-figure",
+    sku: "AC-CYBER-002",
+    availability: "in-stock",
+    coverImage:
+      "https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=800",
+    gallery: [
+      "https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=800",
+    ],
+    badges: ["Best Seller"],
+    specifications: { Scale: "1/6", Height: "30 cm" },
+    character: "Cyber Samurai",
+    franchise: "Neo Tokyo",
+    articulated: true,
+    accessoriesIncluded: ["LED katana", "display base", "alternate head"],
+    heightCm: 30,
+  },
+  {
+    id: "prod-fig-3",
+    name: "Classic Mecha Pilot Figure",
+    slug: "classic-mecha-pilot-figure",
+    shortDescription: "Retro-styled 1/8 mecha pilot in flight suit.",
+    description:
+      "A nostalgic 1/8 scale figure of the iconic mecha pilot. Detailed flight suit and helmet. Comes with miniature cockpit diorama base.",
+    price: 12900,
+    currency: "USD",
+    brand: "RetroFigure",
+    categoryId: "cat-figures",
+    productType: "collectible-figure",
+    sku: "RF-MECH-001",
+    availability: "in-stock",
+    coverImage:
+      "https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=800",
+    gallery: [
+      "https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=800",
+    ],
+    specifications: { Scale: "1/8", Height: "20 cm" },
+    character: "Mecha Pilot",
+    franchise: "Galactic Wars",
+    articulated: false,
+    accessoriesIncluded: ["cockpit base"],
+    heightCm: 20,
+  },
+  {
+    id: "prod-fig-4",
+    name: "Sorceress Crystal Edition",
+    slug: "sorceress-crystal-edition",
+    shortDescription: "Translucent crystal-effect 1/7 fantasy figurine.",
+    description:
+      "A breathtaking 1/7 scale sorceress figure with translucent crystal effect on the cape and staff. Limited to 2000 pieces worldwide.",
+    price: 24900,
+    currency: "USD",
+    brand: "PrimeStatues",
+    categoryId: "cat-figures",
+    productType: "collectible-figure",
+    sku: "PS-SORC-001",
+    availability: "preorder",
+    coverImage:
+      "https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=800",
+    gallery: [
+      "https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=800",
+    ],
+    badges: ["Limited", "New"],
+    specifications: { Scale: "1/7", Height: "26 cm" },
+    character: "Sorceress",
+    franchise: "Epic Fantasy",
+    articulated: false,
+    accessoriesIncluded: ["crystal staff", "display base"],
+    heightCm: 26,
+  },
+  {
+    id: "prod-fig-5",
+    name: "Chibi Dragon Mascot",
+    slug: "chibi-dragon-mascot",
+    shortDescription: "Adorable 10 cm chibi dragon with bobble head.",
+    description:
+      "Cute chibi-style dragon mascot with a spring-loaded bobble head. Perfect desk companion. Made of soft vinyl.",
+    price: 1999,
+    currency: "USD",
+    brand: "PlayLine",
+    categoryId: "cat-figures",
+    productType: "collectible-figure",
+    sku: "PL-CHIBI-001",
+    availability: "in-stock",
+    coverImage:
+      "https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=800",
+    gallery: [
+      "https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=800",
+    ],
+    specifications: { Height: "10 cm" },
+    character: "Dragon Mascot",
+    franchise: "Original",
+    articulated: false,
+    accessoriesIncluded: [],
+    heightCm: 10,
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  //  STATUES
+  // ═══════════════════════════════════════════════════════════════════════════
+
   {
     id: "prod-statue-1",
     name: "Legendary Warrior Statue",
@@ -88,7 +313,90 @@ export const productsData: Product[] = [
     certificateIncluded: true,
     baseIncluded: true,
   },
-  // ─── Toy Figure ─────────────────────────────────────────────────────────
+  {
+    id: "prod-statue-2",
+    name: "Phoenix Rising — Diorama Statue",
+    slug: "phoenix-rising-diorama-statue",
+    shortDescription: "Epic 1/4 scale diorama with fire effects.",
+    description:
+      "A massive 1/4 scale diorama statue depicting a phoenix rising from flames. Incorporates real LED fire effects in the base. Hand-painted, limited to 500 units.",
+    price: 129900,
+    currency: "USD",
+    brand: "PrimeStatues",
+    categoryId: "cat-statues",
+    productType: "statue",
+    sku: "PS-PHNX-001",
+    availability: "preorder",
+    coverImage:
+      "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=800",
+    gallery: [
+      "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=800",
+    ],
+    badges: ["Exclusive", "Limited"],
+    specifications: { Scale: "1/4", Material: "Polystone", Height: "55 cm" },
+    franchise: "Mythical Beasts",
+    scale: "1/4",
+    artist: "ArtForge",
+    certificateIncluded: true,
+    baseIncluded: true,
+  },
+  {
+    id: "prod-statue-3",
+    name: "Dark Knight Bust",
+    slug: "dark-knight-bust",
+    shortDescription: "Detailed 1/2 bust with magnetic cape.",
+    description:
+      "An imposing 1/2 scale bust of the Dark Knight with a removable magnetic cape. Cold-cast porcelain with metallic paint finish.",
+    price: 44900,
+    currency: "USD",
+    brand: "RetroFigure",
+    categoryId: "cat-statues",
+    productType: "statue",
+    sku: "RF-DK-BUST-001",
+    availability: "in-stock",
+    coverImage:
+      "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=800",
+    gallery: [
+      "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=800",
+    ],
+    badges: ["Best Seller"],
+    specifications: { Scale: "1/2", Material: "Porcelain", Height: "40 cm" },
+    franchise: "Comic Heroes",
+    scale: "1/2",
+    artist: "RetroFigure Studio",
+    certificateIncluded: false,
+    baseIncluded: true,
+  },
+  {
+    id: "prod-statue-4",
+    name: "Elven Archer Mini Statue",
+    slug: "elven-archer-mini-statue",
+    shortDescription: "Affordable 1/10 scale PVC statue for fans.",
+    description:
+      "A beautifully detailed 1/10 scale PVC statue of the elven archer. An affordable entry point into the Epic Fantasy statue line.",
+    price: 8900,
+    currency: "USD",
+    brand: "PlayLine",
+    categoryId: "cat-statues",
+    productType: "statue",
+    sku: "PL-ELF-001",
+    availability: "in-stock",
+    coverImage:
+      "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=800",
+    gallery: [
+      "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=800",
+    ],
+    specifications: { Scale: "1/10", Material: "PVC", Height: "18 cm" },
+    franchise: "Epic Fantasy",
+    scale: "1/10",
+    certificateIncluded: false,
+    baseIncluded: true,
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  //  TOY FIGURES
+  // ═══════════════════════════════════════════════════════════════════════════
+
   {
     id: "prod-toy-1",
     name: "Adventure Action Figure",
@@ -115,7 +423,66 @@ export const productsData: Product[] = [
     recommendedAge: "6+",
     material: "PVC",
   },
-  // ─── Accessory ──────────────────────────────────────────────────────────
+  {
+    id: "prod-toy-2",
+    name: "Space Ranger Deluxe Set",
+    slug: "space-ranger-deluxe-set",
+    shortDescription: "3-pack toy figures with spaceship playset.",
+    description:
+      "Three Space Ranger figures with a foldable spaceship playset. Lights and sounds included. Ages 4+.",
+    price: 3999,
+    currency: "USD",
+    brand: "PlayLine",
+    categoryId: "cat-figures",
+    productType: "toy-figure",
+    sku: "PL-SPACE-002",
+    availability: "in-stock",
+    coverImage:
+      "https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=800",
+    gallery: [
+      "https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=800",
+    ],
+    badges: ["Best Seller"],
+    specifications: {
+      Height: "12 cm each",
+      "Recommended age": "4+",
+      "Figures included": "3",
+    },
+    character: "Space Ranger",
+    franchise: "Galaxy Patrol",
+    recommendedAge: "4+",
+    material: "ABS",
+  },
+  {
+    id: "prod-toy-3",
+    name: "Pirate Captain Poseable Figure",
+    slug: "pirate-captain-poseable-figure",
+    shortDescription: "12-point articulation pirate with treasure chest.",
+    description:
+      "A highly poseable pirate captain figure with 12 points of articulation. Comes with a miniature treasure chest and sword. Ages 5+.",
+    price: 1999,
+    currency: "USD",
+    brand: "RetroFigure",
+    categoryId: "cat-figures",
+    productType: "toy-figure",
+    sku: "RF-PIR-001",
+    availability: "in-stock",
+    coverImage:
+      "https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=800",
+    gallery: [
+      "https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=800",
+    ],
+    specifications: { Height: "14 cm", "Recommended age": "5+" },
+    character: "Pirate Captain",
+    franchise: "Sea Adventures",
+    recommendedAge: "5+",
+    material: "PVC",
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  //  ACCESSORIES
+  // ═══════════════════════════════════════════════════════════════════════════
+
   {
     id: "prod-acc-1",
     name: "Universal Display Stand",
@@ -140,7 +507,117 @@ export const productsData: Product[] = [
     compatibility: ["1/7 scale", "1/6 scale", "figures", "statues"],
     material: "acrylic",
   },
-  // ─── Model Kit ─────────────────────────────────────────────────────────
+  {
+    id: "prod-acc-2",
+    name: "LED Showcase Cabinet",
+    slug: "led-showcase-cabinet",
+    shortDescription: "6-shelf glass cabinet with RGB LED lighting.",
+    description:
+      "A premium 6-shelf tempered glass showcase with remote-controlled RGB LED strips. Dust-proof with magnetic doors. Fits most scales.",
+    price: 34900,
+    currency: "USD",
+    brand: "DisplayPro",
+    categoryId: "cat-accessories",
+    productType: "accessory",
+    sku: "DP-CAB-001",
+    availability: "in-stock",
+    coverImage:
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800",
+    gallery: [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800",
+    ],
+    badges: ["Best Seller"],
+    specifications: {
+      Material: "Tempered Glass / Metal",
+      Shelves: "6",
+      Dimensions: "80×40×180 cm",
+    },
+    accessoryType: "display cabinet",
+    compatibility: ["all scales"],
+    material: "glass",
+  },
+  {
+    id: "prod-acc-3",
+    name: "Micro Screwdriver Toolkit",
+    slug: "micro-screwdriver-toolkit",
+    shortDescription: "24-piece precision toolkit for model assembly.",
+    description:
+      "A professional 24-piece precision screwdriver and tool kit designed for model assembly, figure customization, and small repairs.",
+    price: 2999,
+    currency: "USD",
+    brand: "MetalWorks",
+    categoryId: "cat-accessories",
+    productType: "accessory",
+    sku: "MW-TOOL-001",
+    availability: "in-stock",
+    coverImage:
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800",
+    gallery: [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800",
+    ],
+    specifications: { Pieces: "24", Material: "Chrome Vanadium Steel" },
+    accessoryType: "tools",
+    compatibility: ["engineering models", "model kits"],
+    material: "steel",
+  },
+  {
+    id: "prod-acc-4",
+    name: "Turntable Display Base",
+    slug: "turntable-display-base",
+    shortDescription: "Motorised 360° rotating mirror base.",
+    description:
+      "Battery or USB-powered motorised turntable with a mirror surface. Adjustable speed. Perfect for photographing or displaying collectibles.",
+    price: 3499,
+    currency: "USD",
+    brand: "DisplayPro",
+    categoryId: "cat-accessories",
+    productType: "accessory",
+    sku: "DP-TURN-001",
+    availability: "in-stock",
+    coverImage:
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800",
+    gallery: [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800",
+    ],
+    badges: ["New"],
+    specifications: {
+      Diameter: "20 cm",
+      "Max load": "5 kg",
+      Power: "USB / 3×AA",
+    },
+    accessoryType: "turntable",
+    compatibility: ["figures", "statues", "models"],
+    material: "ABS / mirror glass",
+  },
+  {
+    id: "prod-acc-5",
+    name: "Acrylic Riser Set (3 pcs)",
+    slug: "acrylic-riser-set",
+    shortDescription: "Stackable clear risers in S/M/L sizes.",
+    description:
+      "Set of three stackable acrylic risers in small, medium and large sizes. Create elegant tiered displays for your collection.",
+    price: 1499,
+    currency: "USD",
+    brand: "DisplayPro",
+    categoryId: "cat-accessories",
+    productType: "accessory",
+    sku: "DP-RISER-001",
+    availability: "in-stock",
+    coverImage:
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800",
+    gallery: [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800",
+    ],
+    specifications: { Material: "Acrylic", Pieces: "3" },
+    accessoryType: "riser",
+    compatibility: ["figures", "statues"],
+    material: "acrylic",
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  //  MODEL KITS
+  // ═══════════════════════════════════════════════════════════════════════════
+
   {
     id: "prod-kit-1",
     name: "Space Cruiser Model Kit",
@@ -164,6 +641,108 @@ export const productsData: Product[] = [
     specifications: { Scale: "1/144", Parts: "~180" },
     difficultyLevel: "intermediate",
     partsIncluded: 180,
+    assemblyRequired: true,
+    recommendedAge: "14+",
+  },
+  {
+    id: "prod-kit-2",
+    name: "WW2 Fighter Plane 1/48",
+    slug: "ww2-fighter-plane-1-48",
+    shortDescription: "Classic WWII fighter with photoetch details.",
+    description:
+      "A highly detailed 1/48 scale WWII fighter aircraft model kit. Includes photoetched parts, canopy masks, and full-colour instruction manual.",
+    price: 5999,
+    currency: "USD",
+    brand: "ModelSpace",
+    categoryId: "cat-model-kits",
+    productType: "model-kit",
+    sku: "MS-WW2-001",
+    availability: "in-stock",
+    coverImage:
+      "https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=800",
+    gallery: [
+      "https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=800",
+    ],
+    badges: ["Best Seller"],
+    specifications: { Scale: "1/48", Parts: "~320" },
+    difficultyLevel: "advanced",
+    partsIncluded: 320,
+    assemblyRequired: true,
+    recommendedAge: "16+",
+  },
+  {
+    id: "prod-kit-3",
+    name: "Beginner Robot Kit",
+    slug: "beginner-robot-kit",
+    shortDescription: "Snap-fit beginner-friendly robot model.",
+    description:
+      "An easy snap-fit robot model kit perfect for beginners. No glue or paint required. Sticker sheet included.",
+    price: 1999,
+    currency: "USD",
+    brand: "PlayLine",
+    categoryId: "cat-model-kits",
+    productType: "model-kit",
+    sku: "PL-ROBO-001",
+    availability: "in-stock",
+    coverImage:
+      "https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=800",
+    gallery: [
+      "https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=800",
+    ],
+    specifications: { Scale: "Non-scale", Parts: "~60" },
+    difficultyLevel: "beginner",
+    partsIncluded: 60,
+    assemblyRequired: true,
+    recommendedAge: "8+",
+  },
+  {
+    id: "prod-kit-4",
+    name: "Sci-Fi Mech 1/100 Master Grade",
+    slug: "sci-fi-mech-1-100-master-grade",
+    shortDescription: "Master Grade mech with inner frame and LED unit.",
+    description:
+      "Master Grade 1/100 scale sci-fi mech with full inner frame, LED unit option, and water-slide decals. Advanced build for experienced modellers.",
+    price: 7999,
+    currency: "USD",
+    brand: "ModelSpace",
+    categoryId: "cat-model-kits",
+    productType: "model-kit",
+    sku: "MS-MECH-001",
+    availability: "preorder",
+    coverImage:
+      "https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=800",
+    gallery: [
+      "https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=800",
+    ],
+    badges: ["New", "Limited"],
+    specifications: { Scale: "1/100", Parts: "~450" },
+    difficultyLevel: "advanced",
+    partsIncluded: 450,
+    assemblyRequired: true,
+    recommendedAge: "15+",
+  },
+  {
+    id: "prod-kit-5",
+    name: "Vintage Car 1/24 Metal Kit",
+    slug: "vintage-car-1-24-metal-kit",
+    shortDescription: "Die-cast metal body kit with rubber tyres.",
+    description:
+      "A premium 1/24 scale vintage car model kit with a die-cast metal body, rubber tyres, and chrome-plated trim. Intermediate difficulty.",
+    price: 6499,
+    currency: "USD",
+    brand: "GearBox Studio",
+    categoryId: "cat-model-kits",
+    productType: "model-kit",
+    sku: "GBS-CAR-001",
+    availability: "in-stock",
+    coverImage:
+      "https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=800",
+    gallery: [
+      "https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=800",
+    ],
+    specifications: { Scale: "1/24", Parts: "~200" },
+    difficultyLevel: "intermediate",
+    partsIncluded: 200,
     assemblyRequired: true,
     recommendedAge: "14+",
   },
