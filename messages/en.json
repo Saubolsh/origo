@@ -8,6 +8,7 @@
       "products": "Products",
       "categories": "Categories",
       "about": "About",
+      "clients": "Our clients",
       "contact": "Contact"
     },
     "availability": {
@@ -46,6 +47,24 @@
     "heading": "Contact",
     "intro": "For inquiries, wholesale, or support, reach out via the form below or email us at support@origo.example.",
     "formNote": "Contact form and API integration can be added here. Architecture is ready for React Hook Form + Zod."
+  },
+  "clients": {
+    "title": "Our clients",
+    "description": "Who we work with: bloggers, streamers, and ORIGO partners.",
+    "heading": "Our clients",
+    "intro": "We collaborate with content creators and businesses that help grow collecting culture and connect products with the right audience.",
+    "bloggers": {
+      "title": "Bloggers",
+      "text": "Reviews, unboxings, and curated picks from bloggers help our products reach engaged collectors."
+    },
+    "streamers": {
+      "title": "Streamers",
+      "text": "Streamers showcase new arrivals live, share hands-on impressions, and build an active community around collectibles."
+    },
+    "partners": {
+      "title": "Partners",
+      "text": "Partnerships with stores, media, and brands help us expand the catalog and launch joint initiatives."
+    }
   },
   "categories": {
     "title": "Categories",

@@ -11,6 +11,7 @@ import { LocaleSwitcher } from "@/widgets/locale-switcher";
 const navKeys = [
   { href: "/", key: "nav.home" as const },
   { href: "/about", key: "nav.about" as const },
+  { href: "/clients", key: "nav.clients" as const },
   { href: "/contact", key: "nav.contact" as const },
 ] as const;
 
