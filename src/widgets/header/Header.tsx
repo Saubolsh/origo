@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Link } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import { cn } from "@/shared/lib/cn";
 import { LocaleSwitcher } from "@/widgets/locale-switcher";
@@ -18,7 +18,13 @@ const MOBILE_NAV_ID = "mobile-nav";
 
 export function Header() {
   const t = useTranslations("common");
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-origo-zinc bg-origo-black/90 backdrop-blur supports-[backdrop-filter]:bg-origo-black/80">
@@ -41,7 +47,7 @@ export function Header() {
               href={href}
               className={cn(
                 "text-sm font-medium text-origo-silver transition hover:text-origo-white",
-                href === "/" && "text-origo-white"
+                isActive(href) && "text-origo-white"
               )}
             >
               {t(key)}

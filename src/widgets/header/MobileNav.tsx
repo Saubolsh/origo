@@ -3,7 +3,7 @@
 import { useEffect, useRef, useCallback, useState } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { Link } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import { cn } from "@/shared/lib/cn";
 import { LocaleSwitcher } from "@/widgets/locale-switcher";
@@ -24,10 +24,16 @@ interface MobileNavProps {
 
 export function MobileNav({ open, onClose }: MobileNavProps) {
   const t = useTranslations("common");
+  const pathname = usePathname();
   const panelRef = useRef<HTMLDivElement>(null);
   const allowOverlayCloseRef = useRef(false);
   const delayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [mounted, setMounted] = useState(false);
+
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
 
   useEffect(() => setMounted(true), []);
 
@@ -137,7 +143,7 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
                   onClick={onClose}
                   className={cn(
                     "rounded-lg px-4 py-3 text-base font-medium text-origo-silver transition hover:bg-origo-zinc hover:text-origo-white",
-                    href === "/" && "text-origo-white"
+                    isActive(href) && "text-origo-white"
                   )}
                 >
                   {t(key)}
