@@ -4,8 +4,35 @@ import { getCategories } from "@/entities/category/api";
 import { getProducts } from "@/entities/product/api";
 import { CategoryGrid } from "@/widgets/category-grid";
 import { ProductGrid } from "@/widgets/product-grid";
+import { canonicalUrl } from "@/shared/lib/seo-url";
 
 type Props = { params: Promise<{ locale: string }> };
+
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "home" });
+
+  const canonical = canonicalUrl(locale, "/");
+  const title = t("title");
+  const description = t("subtitle");
+
+  return {
+    title,
+    description,
+    alternates: { canonical },
+    openGraph: {
+      title,
+      description,
+      url: canonical,
+      type: "website",
+    },
+    twitter: {
+      card: "summary",
+      title,
+      description,
+    },
+  };
+}
 
 export default async function HomePage({ params }: Props) {
   const { locale } = await params;

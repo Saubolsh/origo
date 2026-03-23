@@ -3,6 +3,9 @@ import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
 import { getProductBySlug, getProducts } from "@/entities/product/api";
 import { ProductPageContent } from "@/widgets/product-page/ProductPageContent";
+import { canonicalUrl } from "@/shared/lib/seo-url";
+
+export const dynamic = "force-static";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -16,9 +19,31 @@ export async function generateMetadata({ params }: Props) {
   const product = await getProductBySlug(slug);
   const t = await getTranslations({ locale, namespace: "products" });
   if (!product) return { title: t("notFound") };
+
+  const canonical = canonicalUrl(locale, `/products/${product.slug}/`);
+  const title = product.name;
+  const description = product.shortDescription ?? product.description;
+
   return {
-    title: product.name,
-    description: product.shortDescription ?? product.description,
+    title,
+    description,
+    alternates: { canonical },
+    openGraph: {
+      title,
+      description,
+      url: canonical,
+      // Next.js validates `openGraph.type` against an allowlist.
+      // `"product"` is not accepted here, so use a safe default.
+      type: "website",
+      // Use plain URLs for maximum compatibility with Next's Metadata API.
+      images: [product.coverImage],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [product.coverImage],
+    },
   };
 }
 
@@ -29,5 +54,39 @@ export default async function ProductPage({ params }: Props) {
   const product = await getProductBySlug(slug);
   if (!product) notFound();
 
-  return <ProductPageContent product={product} />;
+  const canonical = canonicalUrl(locale, `/products/${product.slug}/`);
+
+  const availabilityUrl =
+    product.availability === "in-stock"
+      ? "https://schema.org/InStock"
+      : product.availability === "preorder"
+        ? "https://schema.org/PreOrder"
+        : "https://schema.org/OutOfStock";
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: product.shortDescription ?? product.description,
+    sku: product.sku,
+    image: [product.coverImage],
+    brand: {
+      "@type": "Brand",
+      name: product.brand,
+    },
+    offers: {
+      "@type": "Offer",
+      priceCurrency: product.currency,
+      price: product.price,
+      availability: availabilityUrl,
+      url: canonical,
+    },
+  };
+
+  return (
+    <>
+      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      <ProductPageContent product={product} />
+    </>
+  );
 }
