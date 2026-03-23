@@ -8,7 +8,7 @@ import { cn } from "@/shared/lib/cn";
 const localeLabels: Record<string, string> = {
   en: "EN",
   ru: "РУС",
-  kk: "ҚАЗ",
+  kz: "ҚАЗ",
 };
 
 /** Get locale from the real URL pathname (e.g. /en/about -> "en") so active state matches the address bar. */
