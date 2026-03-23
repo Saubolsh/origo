@@ -141,9 +141,11 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
                   key={href}
                   href={href}
                   onClick={onClose}
+                  aria-current={isActive(href) ? "page" : undefined}
                   className={cn(
-                    "rounded-lg px-4 py-3 text-base font-medium text-origo-silver transition hover:bg-origo-zinc hover:text-origo-white",
-                    isActive(href) && "text-origo-white"
+                    "rounded-lg border border-transparent px-4 py-3 text-base font-medium text-origo-silver transition hover:bg-origo-zinc hover:text-origo-white",
+                    isActive(href) &&
+                      "border-origo-accent/40 bg-origo-zinc text-origo-white"
                   )}
                 >
                   {t(key)}
