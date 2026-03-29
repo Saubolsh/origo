@@ -95,6 +95,9 @@
   "product": {
     "descriptionLabel": "Описание",
     "categoryLabel": "Категория",
-    "brandLabel": "Бренд"
+    "brandLabel": "Бренд",
+    "priceLabel": "Цена",
+    "skuLabel": "Артикул",
+    "specificationsTitle": "Характеристики"
   }
 }

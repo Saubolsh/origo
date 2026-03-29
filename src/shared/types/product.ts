@@ -1,3 +1,5 @@
+import { Category } from "./category";
+
 export type ProductType =
   | "engineering-model"
   | "model-kit"
@@ -16,17 +18,12 @@ export interface ProductBase {
   slug: string;
   shortDescription?: string;
   description: string;
-  price: number;
-  currency: string;
+  price: Record<string, number>;
   brand: string;
-  categoryId: string;
-  productType: ProductType;
-  sku?: string;
-  availability: Availability;
+  category: Category;
+  product: ProductType;
   coverImage: string;
   gallery: string[];
-  badges?: ProductBadge[];
-  specifications?: Record<string, string>;
 }
 
 // ─── Type-specific detail interfaces ─────────────────────────────────────

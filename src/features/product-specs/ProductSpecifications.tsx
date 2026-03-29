@@ -4,12 +4,15 @@ interface ProductSpecificationsProps {
   specifications?: Record<string, string>;
   extraRows?: { label: string; value: string | number | boolean }[];
   className?: string;
+  /** Section heading; defaults to English for inline/template usage without i18n. */
+  title?: string;
 }
 
 export function ProductSpecifications({
   specifications = {},
   extraRows = [],
   className,
+  title = "Specifications",
 }: ProductSpecificationsProps) {
   const entries = [
     ...Object.entries(specifications).map(([k, v]) => ({ label: k, value: v })),
@@ -22,7 +25,7 @@ export function ProductSpecifications({
 
   return (
     <div className={cn("rounded-lg border border-origo-zinc bg-origo-slate p-4", className)}>
-      <h3 className="mb-3 font-semibold text-origo-white">Specifications</h3>
+      <h3 className="mb-3 font-semibold text-origo-white">{title}</h3>
       <dl className="space-y-2">
         {entries.map(({ label, value }) => (
           <div

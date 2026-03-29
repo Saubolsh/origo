@@ -4,8 +4,6 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { useTranslations } from "next-intl";
 
 export type SortOption =
-  | "popular"
-  | "newest"
   | "price-asc"
   | "price-desc";
 
@@ -15,8 +13,6 @@ interface SortDropdownProps {
 }
 
 const OPTIONS: SortOption[] = [
-  "popular",
-  "newest",
   "price-asc",
   "price-desc",
 ];

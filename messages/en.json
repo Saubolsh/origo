@@ -95,6 +95,9 @@
   "product": {
     "descriptionLabel": "Description",
     "categoryLabel": "Category",
-    "brandLabel": "Brand"
+    "brandLabel": "Brand",
+    "priceLabel": "Price",
+    "skuLabel": "Item code",
+    "specificationsTitle": "Specifications"
   }
 }

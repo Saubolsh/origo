@@ -31,31 +31,10 @@ function formatUsd(cents: number): string {
   }).format(cents / 100);
 }
 
-/* Badge-priority map for "popular" sort ──────────────────────────────── */
-const BADGE_PRIORITY: Record<string, number> = {
-  "Best Seller": 4,
-  Exclusive: 3,
-  Limited: 2,
-  New: 1,
-};
-
-function popularityScore(product: Product): number {
-  if (!product.badges || product.badges.length === 0) return 0;
-  return Math.max(...product.badges.map((b) => BADGE_PRIORITY[b] ?? 0));
-}
-
 /* Sorting helpers ────────────────────────────────────────────────────── */
 function sortProducts(products: Product[], sort: SortOption): Product[] {
   const sorted = [...products];
   switch (sort) {
-    case "popular":
-      return sorted.sort((a, b) => popularityScore(b) - popularityScore(a));
-    case "newest":
-      return sorted.sort((a, b) => {
-        const aNew = a.badges?.includes("New") ? 1 : 0;
-        const bNew = b.badges?.includes("New") ? 1 : 0;
-        return bNew - aNew;
-      });
     case "price-asc":
       return sorted.sort((a, b) => a.price - b.price);
     case "price-desc":
@@ -69,7 +48,7 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
   const t = useTranslations("products.filters");
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [selectedPriceRanges, setSelectedPriceRanges] = useState<string[]>([]);
-  const [sortBy, setSortBy] = useState<SortOption>("popular");
+  const [sortBy, setSortBy] = useState<SortOption>("price-asc");
 
   /* Extract unique brands from products, sorted alphabetically */
   const brands = useMemo(() => {

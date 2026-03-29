@@ -76,6 +76,9 @@
   "product": {
     "descriptionLabel": "Сипаттама",
     "categoryLabel": "Санат",
-    "brandLabel": "Бренд"
+    "brandLabel": "Бренд",
+    "priceLabel": "Баға",
+    "skuLabel": "Тауар коды",
+    "specificationsTitle": "Сипаттамалары"
   }
 }
