@@ -1,0 +1,9 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    container_name: origo-front
+    restart: unless-stopped
+    ports:
+      - "9000:80"

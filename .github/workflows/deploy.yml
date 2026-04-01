@@ -1,52 +1,25 @@
-name: Deploy to GitHub Pages
+name: Deploy to VPS
 
 on:
   push:
-    branches: [main]
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
+    branches:
+      - main
 
 jobs:
   deploy:
+    name: Deploy
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1
         with:
-          node-version: "20"
-          cache: "npm"
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build
-        run: npm run build
-        env:
-          NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
-          NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
-
-      - name: Create root redirect
-        run: |
-          echo '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Redirecting...</title><script>location.replace("en/");</script><meta http-equiv="refresh" content="0;url=en/"></head><body><p>Redirecting to <a href="en/">default locale</a>...</p></body></html>' > out/index.html
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: out
-
-      - name: Deploy to GitHub Pages
-        id: deploy
-        uses: actions/deploy-pages@v4
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            cd /opt/origo
+            git pull origin main
+            docker compose -f docker-compose.prod.yml build --no-cache web
+            docker compose -f docker-compose.prod.yml up -d
+            echo "✅ Deploy complete!"

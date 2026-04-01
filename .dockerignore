@@ -1,0 +1,13 @@
+.git
+.github
+node_modules
+.next
+out
+.env*
+*.md
+.idea
+.vscode
+.DS_Store
+coverage
+.nyc_output
+.cache
