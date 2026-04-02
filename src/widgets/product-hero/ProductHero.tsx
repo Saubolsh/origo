@@ -1,5 +1,5 @@
-import { AvailabilityBadge } from "@/features/product-availability/AvailabilityBadge";
-import { ProductBadges } from "@/features/product-badges/ProductBadges";
+// import { AvailabilityBadge } from "@/features/product-availability/AvailabilityBadge";
+// import { ProductBadges } from "@/features/product-badges/ProductBadges";
 import type { Product } from "@/entities/product/types";
 import type { Category } from "@/shared/types";
 import { Link } from "@/i18n/navigation";
@@ -44,10 +44,12 @@ export function ProductHero({
 }: ProductHeroProps) {
   return (
     <div className={className}>
+      {/* In-stock + Best Seller / promo badges — disabled for now
       <div className="flex flex-wrap items-center gap-2">
         <AvailabilityBadge availability={product.availability} />
         <ProductBadges badges={product.badges} />
       </div>
+      */}
 
       <h1 className="mt-3 text-2xl font-bold tracking-tight text-origo-white sm:text-3xl">
         {product.name}

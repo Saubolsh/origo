@@ -9,16 +9,7 @@ interface ProductCtaProps {
 export function ProductCta({ product, className }: ProductCtaProps) {
   return (
     <div className={className}>
-      <AddToCartButton
-        availability={product.availability}
-        productName={product.name}
-      />
-      <p className="mt-3 text-xs text-origo-muted">
-        Need help?{" "}
-        <a href="/contact" className="text-origo-accent hover:underline">
-          Contact us
-        </a>
-      </p>
-    </div>
+      <AddToCartButton productName={product.name} />
+      </div>
   );
 }

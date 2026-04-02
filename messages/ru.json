@@ -24,6 +24,8 @@
     "category": "Категория",
     "brand": "Бренд",
     "addToCart": "В корзину",
+    "buy": "Купить",
+    "buyTelegramAria": "Заказать {productName} в Telegram",
     "preorderButton": "Предзаказ",
     "outOfStockButton": "Нет в наличии",
     "addToCartAria": "Добавить {productName} в корзину",
