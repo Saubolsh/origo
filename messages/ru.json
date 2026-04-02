@@ -92,7 +92,8 @@
       "priceUpTo": "до {value}",
       "priceAbove": "более {value}",
       "productCount_one": "товар",
-      "productCount_other": "товаров"
+      "productCount_other": "товаров",
+      "loadMore": "Загрузить ещё"
     },
     "sort": {
       "popular": "Популярные",

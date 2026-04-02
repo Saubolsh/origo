@@ -28,7 +28,7 @@ export function ProductGallery({
           alt={`${productName} — image ${selectedIndex + 1}`}
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
-          className="object-cover"
+          className="object-contain"
           priority
         />
       </div>

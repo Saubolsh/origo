@@ -92,7 +92,8 @@
       "priceUpTo": "{value} дейін",
       "priceAbove": "{value} жоғары",
       "productCount_one": "өнім",
-      "productCount_other": "өнім"
+      "productCount_other": "өнім",
+      "loadMore": "Тағы жүктеу"
     },
     "sort": {
       "popular": "Танымал",
