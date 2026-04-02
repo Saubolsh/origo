@@ -19,7 +19,7 @@ export async function ProductPageContent({ product }: ProductPageContentProps) {
   return (
     <article className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
       {/* 1. Hero + Gallery row */}
-      <div className="grid gap-8 lg:grid-cols-2">
+      <div className="grid min-w-0 gap-8 lg:grid-cols-2">
         <ProductGallery
           coverImage={product.coverImage}
           gallery={product.gallery}
