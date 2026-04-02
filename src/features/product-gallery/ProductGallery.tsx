@@ -21,14 +21,15 @@ export function ProductGallery({
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   return (
-    <div className={cn("flex flex-col gap-4", className)}>
-      <div className="relative aspect-square overflow-hidden rounded-lg border border-origo-zinc bg-origo-charcoal">
+    <div className={cn("flex min-w-0 flex-col gap-4", className)}>
+      <div className="flex items-center justify-center overflow-hidden rounded-lg border border-origo-zinc bg-origo-charcoal">
         <Image
           src={images[selectedIndex] ?? coverImage}
           alt={`${productName} — image ${selectedIndex + 1}`}
-          fill
+          width={800}
+          height={800}
           sizes="(max-width: 768px) 100vw, 50vw"
-          className="object-contain"
+          className="h-auto max-h-[50vh] w-full object-contain sm:max-h-[600px]"
           priority
         />
       </div>
