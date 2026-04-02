@@ -8,7 +8,7 @@ export const dynamic = "force-static";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [categories, products] = await Promise.all([
-    getCategories(),
+    getCategories("en"),
     getProducts(),
   ]);
 

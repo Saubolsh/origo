@@ -39,7 +39,7 @@ export default async function HomePage({ params }: Props) {
   setRequestLocale(locale);
 
   const [categories, products] = await Promise.all([
-    getCategories(),
+    getCategories(locale),
     getProducts(),
   ]);
   const featuredProducts = products.slice(0, 6);

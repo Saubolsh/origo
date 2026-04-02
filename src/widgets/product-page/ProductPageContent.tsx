@@ -11,10 +11,10 @@ interface ProductPageContentProps {
 }
 
 export async function ProductPageContent({ product }: ProductPageContentProps) {
-  const category = await getCategoryById(product.categoryId);
+  const locale = await getLocale();
+  const category = await getCategoryById(product.categoryId, locale);
   const Template = resolveProductTemplate(product);
   const t = await getTranslations("product");
-  const locale = await getLocale();
 
   return (
     <article className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">

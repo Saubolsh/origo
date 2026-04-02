@@ -36,7 +36,7 @@ export default async function CategoriesPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("categories");
-  const categories = await getCategories();
+  const categories = await getCategories(locale);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">

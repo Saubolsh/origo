@@ -1,7 +1,10 @@
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
-import { getCategories, getCategoryBySlug } from "@/entities/category/api";
+import {
+  getCategoryBySlug,
+  getCategorySlugStaticParams,
+} from "@/entities/category/api";
 import { getProductsByCategory } from "@/entities/product/api";
 import { ProductCatalog } from "@/widgets/product-catalog";
 import { canonicalUrl } from "@/shared/lib/seo-url";
@@ -9,13 +12,12 @@ import { canonicalUrl } from "@/shared/lib/seo-url";
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
 export async function generateStaticParams() {
-  const categories = await getCategories();
-  return categories.map((c) => ({ slug: c.slug }));
+  return getCategorySlugStaticParams();
 }
 
 export async function generateMetadata({ params }: Props) {
   const { locale, slug } = await params;
-  const category = await getCategoryBySlug(slug);
+  const category = await getCategoryBySlug(slug, locale);
   const t = await getTranslations({ locale, namespace: "categories" });
   if (!category) return { title: t("notFound") };
 
@@ -47,12 +49,8 @@ export default async function CategoryPage({ params }: Props) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
 
-  const [category, products] = await Promise.all([
-    getCategoryBySlug(slug),
-    getCategoryBySlug(slug).then((c) =>
-      c ? getProductsByCategory(c.id) : []
-    ),
-  ]);
+  const category = await getCategoryBySlug(slug, locale);
+  const products = category ? await getProductsByCategory(category.id) : [];
 
   if (!category) notFound();
 
