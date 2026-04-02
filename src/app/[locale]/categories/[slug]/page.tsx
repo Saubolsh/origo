@@ -50,9 +50,12 @@ export default async function CategoryPage({ params }: Props) {
   setRequestLocale(locale);
 
   const category = await getCategoryBySlug(slug, locale);
-  const products = category ? await getProductsByCategory(category.id) : [];
-
   if (!category) notFound();
+
+  const { products, total, pageSize } = await getProductsByCategory(
+    category.id,
+    locale,
+  );
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
@@ -62,7 +65,13 @@ export default async function CategoryPage({ params }: Props) {
       {category.description && (
         <p className="mt-2 text-origo-silver">{category.description}</p>
       )}
-      <ProductCatalog products={products} />
+      <ProductCatalog
+        initialProducts={products}
+        categoryId={category.id}
+        locale={locale}
+        total={total}
+        pageSize={pageSize}
+      />
     </div>
   );
 }

@@ -8,7 +8,7 @@ import { ProductSpecifications } from "@/features/product-specs/ProductSpecifica
 function formatPrice(
   priceCents: number,
   currency: string,
-  locale: string
+  locale: string,
 ): string {
   const tag = locale === "kz" ? "kk-KZ" : locale;
   return new Intl.NumberFormat(tag, {
@@ -18,6 +18,12 @@ function formatPrice(
     maximumFractionDigits: 0,
   }).format(priceCents / 100);
 }
+
+const CURRENCY_ORDER = [
+  { key: "kzt" as const, code: "KZT" },
+  { key: "rub" as const, code: "RUB" },
+  { key: "usd" as const, code: "USD" },
+];
 
 interface ProductHeroProps {
   product: Product;
@@ -69,9 +75,22 @@ export function ProductHero({
         <p className="text-xs font-medium uppercase tracking-wide text-origo-muted">
           {priceLabel}
         </p>
-        <p className="mt-1 text-3xl font-semibold tracking-tight text-origo-accent">
-          {formatPrice(product.price, product.currency, locale)}
-        </p>
+        {product.prices ? (
+          <p className="mt-1 flex flex-wrap items-baseline gap-x-3 text-2xl font-semibold tracking-tight text-origo-accent sm:text-3xl">
+            {CURRENCY_ORDER.map(({ key, code }, i) => (
+              <span key={code}>
+                {i > 0 && (
+                  <span className="mr-3 text-origo-zinc/50">/</span>
+                )}
+                {formatPrice(product.prices![key], code, locale)}
+              </span>
+            ))}
+          </p>
+        ) : (
+          <p className="mt-1 text-3xl font-semibold tracking-tight text-origo-accent">
+            {formatPrice(product.price, product.currency, locale)}
+          </p>
+        )}
       </div>
 
       <dl className="mt-6 space-y-3 text-sm">

@@ -14,6 +14,12 @@ function formatPrice(price: number, currency: string): string {
   }).format(price / 100);
 }
 
+const CURRENCY_ORDER = [
+  { key: "kzt" as const, code: "KZT" },
+  { key: "rub" as const, code: "RUB" },
+  { key: "usd" as const, code: "USD" },
+];
+
 interface ProductCardProps {
   product: Product;
   className?: string;
@@ -55,9 +61,22 @@ export function ProductCard({ product, className }: ProductCardProps) {
             {product.shortDescription}
           </p>
         )}
-        <p className="mt-auto pt-3 text-lg font-semibold text-origo-accent">
-          {formatPrice(product.price, product.currency)}
-        </p>
+        {product.prices ? (
+          <p className="mt-auto flex flex-wrap items-baseline gap-x-2 pt-3 text-sm font-semibold text-origo-accent sm:text-base">
+            {CURRENCY_ORDER.map(({ key, code }, i) => (
+              <span key={code}>
+                {i > 0 && (
+                  <span className="mr-2 text-origo-zinc/50">/</span>
+                )}
+                {formatPrice(product.prices![key], code)}
+              </span>
+            ))}
+          </p>
+        ) : (
+          <p className="mt-auto pt-3 text-lg font-semibold text-origo-accent">
+            {formatPrice(product.price, product.currency)}
+          </p>
+        )}
       </div>
     </Link>
   );

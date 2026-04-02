@@ -92,7 +92,8 @@
       "priceUpTo": "Up to {value}",
       "priceAbove": "Above {value}",
       "productCount_one": "product",
-      "productCount_other": "products"
+      "productCount_other": "products",
+      "loadMore": "Load more"
     },
     "sort": {
       "popular": "Popular",

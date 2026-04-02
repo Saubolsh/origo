@@ -1,22 +1,23 @@
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
-import { getProductBySlug, getProducts } from "@/entities/product/api";
+import { getProductBySlug, getAllProductSlugs } from "@/entities/product/api";
 import { ProductPageContent } from "@/widgets/product-page/ProductPageContent";
 import { canonicalUrl } from "@/shared/lib/seo-url";
+import { log } from "node:console";
 
 export const dynamic = "force-static";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
 export async function generateStaticParams() {
-  const products = await getProducts();
-  return products.map((p) => ({ slug: p.slug }));
+  const slugs = await getAllProductSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: Props) {
   const { locale, slug } = await params;
-  const product = await getProductBySlug(slug);
+  const product = await getProductBySlug(slug, locale);
   const t = await getTranslations({ locale, namespace: "products" });
   if (!product) return { title: t("notFound") };
 
@@ -51,7 +52,7 @@ export default async function ProductPage({ params }: Props) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
 
-  const product = await getProductBySlug(slug);
+  const product = await getProductBySlug(slug, locale);
   if (!product) notFound();
 
   const canonical = canonicalUrl(locale, `/products/${product.slug}/`);

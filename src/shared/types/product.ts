@@ -10,6 +10,12 @@ export type Availability = "in-stock" | "preorder" | "out-of-stock";
 
 export type ProductBadge = "New" | "Limited" | "Best Seller" | "Exclusive";
 
+export interface MultiCurrencyPrices {
+  kzt: number;
+  rub: number;
+  usd: number;
+}
+
 export interface ProductBase {
   id: string;
   name: string;
@@ -19,6 +25,8 @@ export interface ProductBase {
   /** Price in minor units (e.g. cents). */
   price: number;
   currency: string;
+  /** All three currency prices in minor units when available from the API. */
+  prices?: MultiCurrencyPrices;
   brand: string;
   categoryId: string;
   sku: string;
