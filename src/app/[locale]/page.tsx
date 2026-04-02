@@ -1,9 +1,9 @@
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
 import { getCategories } from "@/entities/category/api";
-import { getProducts } from "@/entities/product/api";
+// import { getProducts } from "@/entities/product/api";
 import { CategoryGrid } from "@/widgets/category-grid";
-import { ProductGrid } from "@/widgets/product-grid";
+// import { ProductGrid } from "@/widgets/product-grid";
 import { canonicalUrl } from "@/shared/lib/seo-url";
 
 type Props = { params: Promise<{ locale: string }> };
@@ -38,11 +38,12 @@ export default async function HomePage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const [categories, products] = await Promise.all([
-    getCategories(locale),
-    getProducts(),
-  ]);
-  const featuredProducts = products.slice(0, 6);
+  const categories = await getCategories(locale);
+  // const [categories, products] = await Promise.all([
+  //   getCategories(locale),
+  //   getProducts(),
+  // ]);
+  // const featuredProducts = products.slice(0, 6);
 
   const t = await getTranslations("home");
 
@@ -67,6 +68,7 @@ export default async function HomePage({ params }: Props) {
         />
       </section>
 
+      {/* Популярные товары / featured products — disabled for now
       <section className="mt-20">
         <h2 className="text-2xl font-semibold text-origo-white">
           {t("featuredProducts")}
@@ -76,6 +78,7 @@ export default async function HomePage({ params }: Props) {
           className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
         />
       </section>
+      */}
     </div>
   );
 }
