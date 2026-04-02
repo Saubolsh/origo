@@ -24,6 +24,8 @@
     "category": "Санат",
     "brand": "Бренд",
     "addToCart": "Себетке қосу",
+    "buy": "Сатып алу",
+    "buyTelegramAria": "{productName} үшін Telegram арқылы тапсырыс беру",
     "preorderButton": "Алдын ала тапсырыс",
     "outOfStockButton": "Сатылымда жоқ",
     "addToCartAria": "{productName} өнімін себетке қосу",

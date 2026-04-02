@@ -24,6 +24,8 @@
     "category": "Category",
     "brand": "Brand",
     "addToCart": "Add to Cart",
+    "buy": "Buy",
+    "buyTelegramAria": "Order {productName} on Telegram",
     "preorderButton": "Pre-order",
     "outOfStockButton": "Out of Stock",
     "addToCartAria": "Add {productName} to cart",

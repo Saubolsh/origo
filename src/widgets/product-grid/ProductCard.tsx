@@ -2,8 +2,8 @@ import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { cn } from "@/shared/lib/cn";
 import type { Product } from "@/entities/product/types";
-import { AvailabilityBadge } from "@/features/product-availability/AvailabilityBadge";
-import { ProductBadges } from "@/features/product-badges/ProductBadges";
+// import { AvailabilityBadge } from "@/features/product-availability/AvailabilityBadge";
+// import { ProductBadges } from "@/features/product-badges/ProductBadges";
 
 function formatPrice(price: number, currency: string): string {
   return new Intl.NumberFormat("en-US", {
@@ -36,10 +36,12 @@ export function ProductCard({ product, className }: ProductCardProps) {
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="object-cover transition duration-300 group-hover:scale-105"
         />
+        {/* In-stock + Best Seller / promo badges — disabled for now
         <div className="absolute left-2 top-2 flex flex-wrap gap-1.5">
           <AvailabilityBadge availability={product.availability} />
           <ProductBadges badges={product.badges} />
         </div>
+        */}
       </div>
       <div className="flex flex-1 flex-col p-4">
         <p className="text-xs font-medium uppercase tracking-wide text-origo-muted">
