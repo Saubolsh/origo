@@ -4,6 +4,11 @@ import { useState } from "react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import { cn } from "@/shared/lib/cn";
+import {
+  AuthDialog,
+  type AuthDialogTab,
+  AuthHeaderControls,
+} from "@/features/auth";
 import { LocaleSwitcher } from "@/widgets/locale-switcher";
 import { MobileNav } from "./MobileNav";
 
@@ -20,6 +25,14 @@ export function Header() {
   const t = useTranslations("common");
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [authOpen, setAuthOpen] = useState(false);
+  const [authTab, setAuthTab] = useState<AuthDialogTab>("login");
+
+  const openAuth = (tab: AuthDialogTab) => {
+    setAuthTab(tab);
+    setAuthOpen(true);
+    setMenuOpen(false);
+  };
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
@@ -54,6 +67,7 @@ export function Header() {
             </Link>
           ))}
           <LocaleSwitcher />
+          <AuthHeaderControls onOpenAuth={openAuth} />
         </nav>
 
         {/* Mobile: burger button (toggle when menu is open) */}
@@ -82,7 +96,16 @@ export function Header() {
         </button>
       </div>
 
-      <MobileNav open={menuOpen} onClose={() => setMenuOpen(false)} />
+      <MobileNav
+        open={menuOpen}
+        onClose={() => setMenuOpen(false)}
+        onOpenAuth={openAuth}
+      />
+      <AuthDialog
+        open={authOpen}
+        onOpenChange={setAuthOpen}
+        defaultTab={authTab}
+      />
     </header>
   );
 }

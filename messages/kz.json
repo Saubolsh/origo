@@ -9,7 +9,8 @@
       "categories": "Санаттар",
       "about": "Біз туралы",
       "clients": "Біздің клиенттер",
-      "contact": "Байланыс"
+      "contact": "Байланыс",
+      "profile": "Профиль"
     },
     "availability": {
       "inStock": "Қоймада бар",
@@ -26,7 +27,13 @@
     "preorderButton": "Алдын ала тапсырыс",
     "outOfStockButton": "Сатылымда жоқ",
     "addToCartAria": "{productName} өнімін себетке қосу",
-    "outOfStockAria": "{productName} сатылымда жоқ"
+    "outOfStockAria": "{productName} сатылымда жоқ",
+    "footer": {
+      "docs": "Құжаттар",
+      "privacyPolicy": "Құпиялылық саясаты",
+      "consentOrigo": "ORIGO келісімі",
+      "publicOffer": "Жария оферта"
+    }
   },
   "home": {
     "title": "Премиум коллекциялар",
@@ -91,6 +98,51 @@
       "price-asc": "Арзаннан қымбатқа",
       "price-desc": "Қымбаттан арзанға"
     }
+  },
+  "auth": {
+    "loginTitle": "Кіру",
+    "registerTitle": "Тіркелу",
+    "forgotPasswordTitle": "Құпия сөзді қалпына келтіру",
+    "tabLogin": "Кіру",
+    "tabRegister": "Тіркелу",
+    "email": "Email",
+    "password": "Құпия сөз",
+    "confirmPassword": "Құпия сөзді қайталаңыз",
+    "firstName": "Аты",
+    "lastName": "Тегі",
+    "submitLogin": "Кіру",
+    "submitRegister": "Аккаунт жасау",
+    "submitForgotPassword": "Сілтеме жіберу",
+    "submitting": "Күтіңіз…",
+    "close": "Жабу",
+    "signIn": "Кіру",
+    "logout": "Шығу",
+    "forgotPassword": "Құпия сөзді ұмыттыңыз ба?",
+    "forgotPasswordHint": "Тіркелу кезінде пайдаланған email-ді енгізіңіз. Құпия сөзді қалпына келтіру сілтемесін жібереміз.",
+    "forgotPasswordSent": "Құпия сөзді қалпына келтіру сілтемесі {email} адресіне жіберілді. Поштаңызды тексеріңіз.",
+    "backToLogin": "Кіруге оралу",
+    "termsOfService": "Қызмет көрсету шарттары",
+    "privacyPolicy": "Құпиялылық саясаты",
+    "cookiePolicy": "Cookie файлдарын пайдалану саясаты",
+    "mockHint": "Демо: кіру браузерде имитацияланады. Нақты API үшін NEXT_PUBLIC_AUTH_MOCK=false (https://origo-api.fly.dev).",
+    "errors": {
+      "generic": "Бірдеңе дұрыс болмады",
+      "required": "Барлық өрістерді толтырыңыз",
+      "email": "Дұрыс email енгізіңіз",
+      "minPassword": "Құпия сөз кемінде 6 таңба",
+      "passwordMismatch": "Құпия сөздер сәйкес келмейді"
+    }
+  },
+  "profile": {
+    "title": "Профиль",
+    "description": "ORIGO аккаунты мен сессиясы.",
+    "subtitle": "Сессия мен JWT осы браузерде сақталады (localStorage).",
+    "guestIntro": "Профильді көру және сессияны басқару үшін кіріңіз немесе тіркеліңіз.",
+    "name": "Аты-жөні",
+    "tokenLabel": "Қол жеткізу токені (JWT)",
+    "mockBadge": "Демо авторизация: API-ға сұраныс жіберілмейді. NEXT_PUBLIC_AUTH_MOCK=false арқылы өшіріңіз.",
+    "logout": "Шығу",
+    "backHome": "Басты бетке"
   },
   "product": {
     "descriptionLabel": "Сипаттама",

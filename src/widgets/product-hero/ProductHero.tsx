@@ -10,8 +10,7 @@ function formatPrice(
   currency: string,
   locale: string
 ): string {
-  const tag =
-    locale === "kk" || locale === "kz" ? "kk-KZ" : locale;
+  const tag = locale === "kz" ? "kk-KZ" : locale;
   return new Intl.NumberFormat(tag, {
     style: "currency",
     currency,

@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Link, usePathname } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import { cn } from "@/shared/lib/cn";
+import { useAuthStore, type AuthDialogTab } from "@/features/auth";
 import { LocaleSwitcher } from "@/widgets/locale-switcher";
 
 const navKeys = [
@@ -20,10 +21,14 @@ const OVERLAY_CLOSE_DELAY_MS = 250;
 interface MobileNavProps {
   open: boolean;
   onClose: () => void;
+  onOpenAuth: (tab: AuthDialogTab) => void;
 }
 
-export function MobileNav({ open, onClose }: MobileNavProps) {
+export function MobileNav({ open, onClose, onOpenAuth }: MobileNavProps) {
   const t = useTranslations("common");
+  const tAuth = useTranslations("auth");
+  const user = useAuthStore((s) => s.user);
+  const logout = useAuthStore((s) => s.logout);
   const pathname = usePathname();
   const panelRef = useRef<HTMLDivElement>(null);
   const allowOverlayCloseRef = useRef(false);
@@ -151,6 +156,53 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
                   {t(key)}
                 </Link>
               ))}
+              {user ? (
+                <>
+                  <Link
+                    href="/profile"
+                    onClick={onClose}
+                    aria-current={isActive("/profile") ? "page" : undefined}
+                    className={cn(
+                      "rounded-lg border border-transparent px-4 py-3 text-base font-medium text-origo-silver transition hover:bg-origo-zinc hover:text-origo-white",
+                      isActive("/profile") &&
+                        "border-origo-accent/40 bg-origo-zinc text-origo-white"
+                    )}
+                  >
+                    {t("nav.profile")}
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      logout();
+                      onClose();
+                    }}
+                    className="rounded-lg border border-transparent px-4 py-3 text-left text-base font-medium text-origo-silver transition hover:bg-origo-zinc hover:text-origo-white"
+                  >
+                    {tAuth("logout")}
+                  </button>
+                </>
+              ) : (
+                <>
+                  {/* Sign in — временно скрыто
+                  <button
+                    type="button"
+                    onClick={() => onOpenAuth("login")}
+                    className="rounded-lg border border-transparent px-4 py-3 text-left text-base font-medium text-origo-silver transition hover:bg-origo-zinc hover:text-origo-white"
+                  >
+                    {tAuth("signIn")}
+                  </button>
+                  */}
+                  {/* Регистрация — временно скрыто
+                  <button
+                    type="button"
+                    onClick={() => onOpenAuth("register")}
+                    className="rounded-lg border border-transparent px-4 py-3 text-left text-base font-medium text-origo-silver transition hover:bg-origo-zinc hover:text-origo-white"
+                  >
+                    {tAuth("tabRegister")}
+                  </button>
+                  */}
+                </>
+              )}
             </nav>
             <div className="border-t border-origo-zinc pt-6">
               <p className="mb-3 text-xs font-medium uppercase tracking-wide text-origo-muted">

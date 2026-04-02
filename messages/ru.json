@@ -9,7 +9,8 @@
       "categories": "Категории",
       "about": "О нас",
       "clients": "Наши клиенты",
-      "contact": "Контакты"
+      "contact": "Контакты",
+      "profile": "Профиль"
     },
     "availability": {
       "inStock": "В наличии",
@@ -26,7 +27,13 @@
     "preorderButton": "Предзаказ",
     "outOfStockButton": "Нет в наличии",
     "addToCartAria": "Добавить {productName} в корзину",
-    "outOfStockAria": "{productName} нет в наличии"
+    "outOfStockAria": "{productName} нет в наличии",
+    "footer": {
+      "docs": "Документы",
+      "privacyPolicy": "Политика конфиденциальности",
+      "consentOrigo": "Согласие Origo",
+      "publicOffer": "Публичная оферта"
+    }
   },
   "home": {
     "title": "Премиум коллекция",
@@ -91,6 +98,51 @@
       "price-asc": "Сначала дешевые",
       "price-desc": "Сначала дорогие"
     }
+  },
+  "auth": {
+    "loginTitle": "Вход",
+    "registerTitle": "Регистрация",
+    "forgotPasswordTitle": "Восстановление пароля",
+    "tabLogin": "Вход",
+    "tabRegister": "Регистрация",
+    "email": "Email",
+    "password": "Пароль",
+    "confirmPassword": "Повторите пароль",
+    "firstName": "Имя",
+    "lastName": "Фамилия",
+    "submitLogin": "Войти",
+    "submitRegister": "Создать аккаунт",
+    "submitForgotPassword": "Отправить ссылку",
+    "submitting": "Подождите…",
+    "close": "Закрыть",
+    "signIn": "Войти",
+    "logout": "Выйти",
+    "forgotPassword": "Забыли пароль?",
+    "forgotPasswordHint": "Введите email, указанный при регистрации. Мы отправим ссылку для сброса пароля.",
+    "forgotPasswordSent": "Ссылка для сброса пароля отправлена на {email}. Проверьте почту.",
+    "backToLogin": "Назад ко входу",
+    "termsOfService": "Условия использования сервиса",
+    "privacyPolicy": "Политика конфиденциальности",
+    "cookiePolicy": "Политика использования файлов cookie",
+    "mockHint": "Демо: вход имитируется в браузере. Для реального API задайте NEXT_PUBLIC_AUTH_MOCK=false (https://origo-api.fly.dev).",
+    "errors": {
+      "generic": "Что-то пошло не так",
+      "required": "Заполните все поля",
+      "email": "Укажите корректный email",
+      "minPassword": "Пароль не короче 6 символов",
+      "passwordMismatch": "Пароли не совпадают"
+    }
+  },
+  "profile": {
+    "title": "Профиль",
+    "description": "Аккаунт и сессия ORIGO.",
+    "subtitle": "Сессия и JWT хранятся в этом браузере (localStorage).",
+    "guestIntro": "Войдите или зарегистрируйтесь, чтобы видеть профиль и управлять сессией.",
+    "name": "Имя",
+    "tokenLabel": "Токен доступа (JWT)",
+    "mockBadge": "Демо-авторизация: запросы к API не отправляются. Отключите NEXT_PUBLIC_AUTH_MOCK=false.",
+    "logout": "Выйти",
+    "backHome": "На главную"
   },
   "product": {
     "descriptionLabel": "Описание",

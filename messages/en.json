@@ -9,7 +9,8 @@
       "categories": "Categories",
       "about": "About",
       "clients": "Our clients",
-      "contact": "Contact"
+      "contact": "Contact",
+      "profile": "Profile"
     },
     "availability": {
       "inStock": "In Stock",
@@ -26,7 +27,13 @@
     "preorderButton": "Pre-order",
     "outOfStockButton": "Out of Stock",
     "addToCartAria": "Add {productName} to cart",
-    "outOfStockAria": "{productName} is out of stock"
+    "outOfStockAria": "{productName} is out of stock",
+    "footer": {
+      "docs": "Documents",
+      "privacyPolicy": "Privacy policy",
+      "consentOrigo": "ORIGO consent",
+      "publicOffer": "Public offer"
+    }
   },
   "home": {
     "title": "Premium collectibles",
@@ -91,6 +98,51 @@
       "price-asc": "Price: low to high",
       "price-desc": "Price: high to low"
     }
+  },
+  "auth": {
+    "loginTitle": "Sign in",
+    "registerTitle": "Create account",
+    "forgotPasswordTitle": "Reset password",
+    "tabLogin": "Sign in",
+    "tabRegister": "Register",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "submitLogin": "Sign in",
+    "submitRegister": "Create account",
+    "submitForgotPassword": "Send reset link",
+    "submitting": "Please wait…",
+    "close": "Close dialog",
+    "signIn": "Sign in",
+    "logout": "Log out",
+    "forgotPassword": "Forgot password?",
+    "forgotPasswordHint": "Enter the email you used to register. We'll send you a password reset link.",
+    "forgotPasswordSent": "A password reset link has been sent to {email}. Check your inbox.",
+    "backToLogin": "Back to sign in",
+    "termsOfService": "Terms of Service",
+    "privacyPolicy": "Privacy Policy",
+    "cookiePolicy": "Cookie Policy",
+    "mockHint": "Demo mode: auth is simulated in the browser. Set NEXT_PUBLIC_AUTH_MOCK=false to use https://origo-api.fly.dev.",
+    "errors": {
+      "generic": "Something went wrong",
+      "required": "Please fill in all fields",
+      "email": "Enter a valid email",
+      "minPassword": "Password must be at least 6 characters",
+      "passwordMismatch": "Passwords do not match"
+    }
+  },
+  "profile": {
+    "title": "Profile",
+    "description": "Your ORIGO account and session.",
+    "subtitle": "Session and JWT are stored in this browser (localStorage).",
+    "guestIntro": "Sign in or register to view your profile and manage your session.",
+    "name": "Name",
+    "tokenLabel": "Access token (JWT)",
+    "mockBadge": "Demo auth: no network requests to the API. Disable with NEXT_PUBLIC_AUTH_MOCK=false.",
+    "logout": "Log out",
+    "backHome": "Back to home"
   },
   "product": {
     "descriptionLabel": "Description",
