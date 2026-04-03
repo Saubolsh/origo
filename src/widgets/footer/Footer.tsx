@@ -6,14 +6,19 @@ import { useTranslations } from "next-intl";
 
 const socialLinks = [
   {
+    href: "https://t.me/origo_kz",
+    icon: "/icons/telegram-fill-svgrepo-com.svg",
+    label: "Telegram",
+  },
+  {
     href: "https://wa.me/message/L3HV2HOZQDICP1",
     icon: "/icons/whatsapp-svgrepo-com.svg",
     label: "WhatsApp",
   },
   {
-    href: "https://t.me/origo_kz",
-    icon: "/icons/telegram-fill-svgrepo-com.svg",
-    label: "Telegram",
+    href: "https://www.instagram.com/origo.kz/",
+    icon: "/icons/instagram-svgrepo-com.svg",
+    label: "Instagram",
   },
   {
     href: "https://www.tiktok.com/@origo.kz",
@@ -24,11 +29,6 @@ const socialLinks = [
     href: "https://www.youtube.com/@kirr0yal",
     icon: "/icons/youtube-svgrepo-com.svg",
     label: "Youtube",
-  },
-  {
-    href: "https://www.instagram.com/origo.kz/",
-    icon: "/icons/instagram-svgrepo-com.svg",
-    label: "Instagram",
   },
 ] as const;
 
