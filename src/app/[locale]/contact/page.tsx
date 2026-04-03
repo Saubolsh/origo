@@ -23,9 +23,9 @@ export default async function ContactPage({ params }: Props) {
         {t("heading")}
       </h1>
       <p className="mt-6 text-origo-silver">{t("intro")}</p>
-      <div className="mt-8 rounded-lg border border-origo-zinc bg-origo-slate p-6">
+      {/* <div className="mt-8 rounded-lg border border-origo-zinc bg-origo-slate p-6">
         <p className="text-sm text-origo-muted">{t("formNote")}</p>
-      </div>
+      </div> */}
     </div>
   );
 }

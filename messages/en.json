@@ -54,8 +54,7 @@
     "title": "Contact",
     "description": "Get in touch with ORIGO.",
     "heading": "Contact",
-    "intro": "For inquiries, wholesale, or support, reach out via the form below or email us at support@origo.example.",
-    "formNote": "Contact form and API integration can be added here. Architecture is ready for React Hook Form + Zod."
+    "intro": "For inquiries, wholesale, or support, reach out via the form below or email us at info@origo.kz"
   },
   "clients": {
     "title": "Our clients",

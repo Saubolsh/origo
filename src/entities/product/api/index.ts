@@ -43,6 +43,9 @@ export async function getProductsByCategory(
     page,
     pageSize,
   );
+
+
+  console.log("data", data);
   return {
     products: (data.products ?? []).map((p) =>
       mapApiProductToProduct(p, locale),
