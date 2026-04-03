@@ -32,7 +32,7 @@ function normalizeApiBase(): string {
 export const fetchCategoriesJson = cache(async (): Promise<ApiCategory[]> => {
   const url = `${normalizeApiBase()}/api/v1/categories`;
   const res = await fetch(url, {
-    next: { revalidate: 3600 },
+    cache: "no-store",
     headers: { Accept: "application/json" },
   });
 
@@ -43,6 +43,7 @@ export const fetchCategoriesJson = cache(async (): Promise<ApiCategory[]> => {
   }
 
   const data: unknown = await res.json();
+
   if (!Array.isArray(data)) {
     throw new Error("Categories API returned a non-array payload");
   }

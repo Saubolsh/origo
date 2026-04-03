@@ -4,6 +4,34 @@ import { Link } from "@/i18n/navigation";
 import { basePathPrefix } from "@/shared/lib/seo-url";
 import { useTranslations } from "next-intl";
 
+const socialLinks = [
+  {
+    href: "https://t.me/origo_kz",
+    icon: "/icons/telegram-fill-svgrepo-com.svg",
+    label: "Telegram",
+  },
+  {
+    href: "https://wa.me/message/L3HV2HOZQDICP1",
+    icon: "/icons/whatsapp-svgrepo-com.svg",
+    label: "WhatsApp",
+  },
+  {
+    href: "https://www.instagram.com/origo.kz/",
+    icon: "/icons/instagram-svgrepo-com.svg",
+    label: "Instagram",
+  },
+  {
+    href: "https://www.tiktok.com/@origo.kz",
+    icon: "/icons/brand-tiktok-sq-svgrepo-com.svg",
+    label: "TikTok",
+  },
+  {
+    href: "https://www.youtube.com/@kirr0yal",
+    icon: "/icons/youtube-svgrepo-com.svg",
+    label: "Youtube",
+  },
+] as const;
+
 const footerKeys = [
   { href: "/about", key: "nav.about" as const },
   { href: "/contact", key: "nav.contact" as const },
@@ -45,6 +73,26 @@ export function Footer() {
             <p className="mt-2 max-w-sm text-sm text-origo-muted">
               {t("siteDescription")}
             </p>
+            <div className="mt-4 flex items-center gap-2.5">
+              {socialLinks.map(({ href, icon, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex h-8 w-8 items-center justify-center rounded-full border border-origo-zinc/60 transition-all hover:border-origo-silver hover:bg-origo-zinc/30"
+                  aria-label={label}
+                >
+                  <img
+                    src={`${assetBase}${icon}`}
+                    alt=""
+                    width={16}
+                    height={16}
+                    className="invert opacity-50 transition-opacity group-hover:opacity-90"
+                  />
+                </a>
+              ))}
+            </div>
           </div>
           <nav className="flex flex-wrap gap-6" aria-label="Footer">
             {footerKeys.map(({ href, key }) => (
