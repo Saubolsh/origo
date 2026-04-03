@@ -11,19 +11,24 @@ const socialLinks = [
     label: "WhatsApp",
   },
   {
-    href: "https://t.me/origo_kz", // TODO: add Telegram link
+    href: "https://t.me/origo_kz",
     icon: "/icons/telegram-fill-svgrepo-com.svg",
     label: "Telegram",
   },
   {
-    href: "https://www.tiktok.com/@origo.kz", // TODO: add TikTok link
+    href: "https://www.tiktok.com/@origo.kz",
     icon: "/icons/brand-tiktok-sq-svgrepo-com.svg",
     label: "TikTok",
   },
   {
-    href: "https://www.youtube.com/@kirr0yal", // TODO: add TikTok link
+    href: "https://www.youtube.com/@kirr0yal",
     icon: "/icons/youtube-svgrepo-com.svg",
     label: "Youtube",
+  },
+  {
+    href: "https://www.instagram.com/origo.kz/",
+    icon: "/icons/instagram-svgrepo-com.svg",
+    label: "Instagram",
   },
 ] as const;
 
