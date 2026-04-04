@@ -1,4 +1,4 @@
-name: Deploy to VPS
+name: Deploy to Staging
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    name: Deploy
+    name: Deploy Staging
     runs-on: ubuntu-latest
 
     steps:
@@ -22,4 +22,4 @@ jobs:
             git pull origin main
             docker compose -f docker-compose.prod.yml build --no-cache web
             docker compose -f docker-compose.prod.yml up -d
-            echo "✅ Deploy complete!"
+            echo "✅ Staging deploy complete!"
