@@ -4,6 +4,8 @@ import { getCategories } from "@/entities/category/api";
 import { CategoryGrid } from "@/widgets/category-grid";
 import { canonicalUrl } from "@/shared/lib/seo-url";
 
+export const revalidate = 60;
+
 type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props) {

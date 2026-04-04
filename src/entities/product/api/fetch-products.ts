@@ -106,6 +106,7 @@ export async function fetchProductsByCategory(
 ): Promise<ApiProductsResponse> {
   const url = `${normalizeApiBase()}/api/v1/products?category_id=${categoryId}&page=${page}&pageSize=${pageSize}`;
   const res = await fetch(url, {
+    next: { revalidate: 60 },
     headers: { Accept: "application/json" },
   });
 
@@ -126,6 +127,7 @@ export async function fetchProductBySlug(
 
   const url = `${normalizeApiBase()}/api/v1/products/${id}`;
   const res = await fetch(url, {
+    next: { revalidate: 60 },
     headers: { Accept: "application/json" },
   });
 
@@ -143,6 +145,7 @@ export async function fetchAllProducts(
 ): Promise<ApiProductsResponse> {
   const url = `${normalizeApiBase()}/api/v1/products?page=${page}&pageSize=${pageSize}`;
   const res = await fetch(url, {
+    next: { revalidate: 60 },
     headers: { Accept: "application/json" },
   });
 

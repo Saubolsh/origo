@@ -6,6 +6,8 @@ import { CategoryGrid } from "@/widgets/category-grid";
 // import { ProductGrid } from "@/widgets/product-grid";
 import { canonicalUrl } from "@/shared/lib/seo-url";
 
+export const revalidate = 60;
+
 type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props) {

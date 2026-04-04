@@ -6,7 +6,7 @@ import { ProductPageContent } from "@/widgets/product-page/ProductPageContent";
 import { canonicalUrl } from "@/shared/lib/seo-url";
 import { log } from "node:console";
 
-export const dynamic = "force-static";
+export const revalidate = 60;
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 

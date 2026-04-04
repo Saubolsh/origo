@@ -32,7 +32,7 @@ function normalizeApiBase(): string {
 export const fetchCategoriesJson = cache(async (): Promise<ApiCategory[]> => {
   const url = `${normalizeApiBase()}/api/v1/categories`;
   const res = await fetch(url, {
-    next: { revalidate: 3600 },
+    next: { revalidate: 60 },
     headers: { Accept: "application/json" },
   });
 

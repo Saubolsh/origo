@@ -9,6 +9,8 @@ import { getProductsByCategory } from "@/entities/product/api";
 import { ProductCatalog } from "@/widgets/product-catalog";
 import { canonicalUrl } from "@/shared/lib/seo-url";
 
+export const revalidate = 60;
+
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
 export async function generateStaticParams() {
