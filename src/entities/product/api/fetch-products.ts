@@ -18,6 +18,7 @@ export interface ApiProduct {
   old_price: { kzt: number; rub: number; usd: number } | null;
   file_name: string;
   images: string[];
+  is_soon?: boolean;
 }
 
 export interface ApiProductsResponse {
@@ -96,6 +97,7 @@ export function mapApiProductToProduct(
     coverImage: raw.images[0] ?? "",
     gallery: raw.images,
     productType: categoryToProductType(raw.category_id),
+    isSoon: raw.is_soon ?? false,
   } as Product;
 }
 
@@ -106,6 +108,7 @@ export async function fetchProductsByCategory(
 ): Promise<ApiProductsResponse> {
   const url = `${normalizeApiBase()}/api/v1/products?category_id=${categoryId}&page=${page}&pageSize=${pageSize}`;
   const res = await fetch(url, {
+    next: { revalidate: 60 },
     headers: { Accept: "application/json" },
   });
 
@@ -126,6 +129,7 @@ export async function fetchProductBySlug(
 
   const url = `${normalizeApiBase()}/api/v1/products/${id}`;
   const res = await fetch(url, {
+    next: { revalidate: 60 },
     headers: { Accept: "application/json" },
   });
 
@@ -143,6 +147,7 @@ export async function fetchAllProducts(
 ): Promise<ApiProductsResponse> {
   const url = `${normalizeApiBase()}/api/v1/products?page=${page}&pageSize=${pageSize}`;
   const res = await fetch(url, {
+    next: { revalidate: 60 },
     headers: { Accept: "application/json" },
   });
 

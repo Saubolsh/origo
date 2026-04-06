@@ -1,9 +1,8 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { cn } from "@/shared/lib/cn";
 import type { Product } from "@/entities/product/types";
-// import { AvailabilityBadge } from "@/features/product-availability/AvailabilityBadge";
-// import { ProductBadges } from "@/features/product-badges/ProductBadges";
 
 function formatPrice(price: number, currency: string): string {
   return new Intl.NumberFormat("en-US", {
@@ -26,11 +25,21 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product, className }: ProductCardProps) {
+  const t = useTranslations("common");
+
+  const Wrapper = product.isSoon ? "div" : Link;
+  const wrapperProps = product.isSoon
+    ? {}
+    : { href: `/products/${product.slug}` };
+
   return (
-    <Link
-      href={`/products/${product.slug}`}
+    <Wrapper
+      {...(wrapperProps as any)}
       className={cn(
-        "group flex flex-col overflow-hidden rounded-lg border border-origo-zinc bg-origo-slate transition hover:border-origo-accent/50 hover:shadow-lg hover:shadow-origo-accent/5",
+        "group flex flex-col overflow-hidden rounded-lg border border-origo-zinc bg-origo-slate transition",
+        !product.isSoon &&
+          "hover:border-origo-accent/50 hover:shadow-lg hover:shadow-origo-accent/5",
+        product.isSoon && "pointer-events-auto cursor-default",
         className
       )}
     >
@@ -40,20 +49,36 @@ export function ProductCard({ product, className }: ProductCardProps) {
           alt={product.name}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="object-cover transition duration-300 group-hover:scale-105"
+          className={cn(
+            "object-cover transition duration-300",
+            product.isSoon
+              ? "brightness-[0.3] grayscale-[0.2]"
+              : "group-hover:scale-105"
+          )}
         />
-        {/* In-stock + Best Seller / promo badges — disabled for now
-        <div className="absolute left-2 top-2 flex flex-wrap gap-1.5">
-          <AvailabilityBadge availability={product.availability} />
-          <ProductBadges badges={product.badges} />
-        </div>
-        */}
+        {product.isSoon && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="rounded-md bg-white/10 px-4 py-1.5 text-sm font-semibold uppercase tracking-widest text-white backdrop-blur-sm">
+              {t("comingSoon")}
+            </span>
+          </div>
+        )}
       </div>
-      <div className="flex flex-1 flex-col p-4">
+      <div
+        className={cn(
+          "flex flex-1 flex-col p-4",
+          product.isSoon && "opacity-50"
+        )}
+      >
         <p className="text-xs font-medium uppercase tracking-wide text-origo-muted">
           {product.brand}
         </p>
-        <h3 className="mt-1 font-semibold text-origo-white line-clamp-2 group-hover:text-origo-accent">
+        <h3
+          className={cn(
+            "mt-1 font-semibold text-origo-white line-clamp-2",
+            !product.isSoon && "group-hover:text-origo-accent"
+          )}
+        >
           {product.name}
         </h3>
         {product.shortDescription && (
@@ -78,6 +103,6 @@ export function ProductCard({ product, className }: ProductCardProps) {
           </p>
         )}
       </div>
-    </Link>
+    </Wrapper>
   );
 }

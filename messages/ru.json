@@ -29,6 +29,7 @@
     "preorderButton": "Предзаказ",
     "outOfStockButton": "Нет в наличии",
     "addToCartAria": "Добавить {productName} в корзину",
+    "comingSoon": "Скоро",
     "outOfStockAria": "{productName} нет в наличии",
     "footer": {
       "docs": "Документы",
