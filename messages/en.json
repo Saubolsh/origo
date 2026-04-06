@@ -29,6 +29,7 @@
     "preorderButton": "Pre-order",
     "outOfStockButton": "Out of Stock",
     "addToCartAria": "Add {productName} to cart",
+    "comingSoon": "Soon",
     "outOfStockAria": "{productName} is out of stock",
     "footer": {
       "docs": "Documents",

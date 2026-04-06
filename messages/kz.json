@@ -29,6 +29,7 @@
     "preorderButton": "Алдын ала тапсырыс",
     "outOfStockButton": "Сатылымда жоқ",
     "addToCartAria": "{productName} өнімін себетке қосу",
+    "comingSoon": "Жақында",
     "outOfStockAria": "{productName} сатылымда жоқ",
     "footer": {
       "docs": "Құжаттар",

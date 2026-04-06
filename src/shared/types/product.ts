@@ -35,6 +35,7 @@ export interface ProductBase {
   gallery: string[];
   badges?: ProductBadge[];
   specifications?: Record<string, string>;
+  isSoon?: boolean;
 }
 
 // ─── Type-specific detail interfaces ─────────────────────────────────────
