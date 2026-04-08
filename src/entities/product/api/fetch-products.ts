@@ -1,10 +1,27 @@
 import type { Product, Availability } from "../types";
 
+/** Localized API fields (nullable per locale). */
+export interface ApiLocaleStrings {
+  en: string | null;
+  kk: string | null;
+  ru: string | null;
+}
+
+export interface ApiProductAttribute {
+  id: number;
+  name: { en: string; kk: string; ru: string };
+  slug: string;
+  type: string;
+  unit: string | null;
+  sort_order: number;
+  value: string;
+}
+
 export interface ApiProduct {
   id: number;
   name: { en: string; kk: string; ru: string };
   slug: string;
-  description: string | null;
+  description: ApiLocaleStrings | string | null;
   price: { kzt: number; rub: number; usd: number };
   stock: number;
   category_id: number;
@@ -14,11 +31,12 @@ export interface ApiProduct {
   brand_name: { en: string; kk: string; ru: string } | string | null;
   sku: string;
   brand_id: number;
-  content: string;
+  content: ApiLocaleStrings | string | null;
   old_price: { kzt: number; rub: number; usd: number } | null;
   file_name: string;
   images: string[];
   is_soon?: boolean;
+  attributes?: ApiProductAttribute[];
 }
 
 export interface ApiProductsResponse {
@@ -69,6 +87,34 @@ function pickBrand(
   return brandName[nameKey] || brandName.en || "";
 }
 
+function pickLocalizedText(
+  field: ApiLocaleStrings | string | null | undefined,
+  nameKey: keyof ApiProduct["name"],
+): string {
+  if (field == null) return "";
+  if (typeof field === "string") return field.trim();
+  const v = field[nameKey] ?? field.en;
+  return typeof v === "string" ? v.trim() : "";
+}
+
+function mapAttributeRows(
+  raw: ApiProduct,
+  nameKey: keyof ApiProduct["name"],
+): { slug: string; label: string; value: string }[] {
+  const list = raw.attributes ?? [];
+  return [...list]
+    .sort((a, b) => a.sort_order - b.sort_order || a.id - b.id)
+    .map((attr) => {
+      let value = attr.value ?? "";
+      if (attr.unit) value = `${value} ${attr.unit}`.trim();
+      return {
+        slug: attr.slug,
+        label: attr.name[nameKey] || attr.name.en || attr.slug,
+        value,
+      };
+    });
+}
+
 export function mapApiProductToProduct(
   raw: ApiProduct,
   locale: string,
@@ -78,11 +124,17 @@ export function mapApiProductToProduct(
   const availability: Availability =
     raw.stock > 0 ? "in-stock" : "out-of-stock";
 
+  const fromDescription = pickLocalizedText(raw.description, nameKey);
+  const fromContent = pickLocalizedText(raw.content, nameKey);
+  const description = fromDescription || fromContent;
+  const attributeRows = mapAttributeRows(raw, nameKey);
+
   return {
     id: String(raw.id),
     name: raw.name[nameKey] || raw.name.en || "",
     slug: raw.slug,
-    description: "",
+    description,
+    attributeRows: attributeRows.length ? attributeRows : undefined,
     price: (raw.price[priceKey] ?? raw.price.usd) * 100,
     currency: currencyCode,
     prices: {

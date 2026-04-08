@@ -67,9 +67,19 @@ export function ProductHero({
         </p>
       ) : null}
 
-      <p className="mt-4 max-w-prose text-sm leading-relaxed text-origo-white/90 sm:text-base">
-        {product.description}
-      </p>
+      {product.description ? (
+        <p className="mt-4 max-w-prose text-sm leading-relaxed text-origo-white/90 sm:text-base">
+          {product.description}
+        </p>
+      ) : null}
+
+      <ProductSpecifications
+        attributeRows={product.attributeRows}
+        className="mt-5"
+        extraRows={[]}
+        specifications={product.specifications ?? {}}
+        title={specificationsTitle}
+      />
 
       <div className="mt-6 border-t border-origo-zinc/50 pt-6">
         <p className="text-xs font-medium uppercase tracking-wide text-origo-muted">
@@ -120,13 +130,6 @@ export function ProductHero({
           </div>
         ) : null}
       </dl>
-
-      <ProductSpecifications
-        className="mt-6"
-        extraRows={[]}
-        specifications={product.specifications}
-        title={specificationsTitle}
-      />
     </div>
   );
 }
