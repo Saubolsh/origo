@@ -12,21 +12,35 @@ const API_BASE =
     process.env.NEXT_PUBLIC_ORIGO_API_BASE?.trim() ?? "https://api.origo.kz"
   ).replace(/\/$/, "");
 
-interface ProductCatalogProps {
+type ProductCatalogBaseProps = {
   initialProducts: Product[];
-  categoryId: string;
   locale: string;
   total: number;
   pageSize: number;
+};
+
+type ProductCatalogProps = ProductCatalogBaseProps &
+  (
+    | { mode: "category"; categoryId: string }
+    | { mode: "featured" }
+  );
+
+function buildLoadMoreUrl(
+  mode: ProductCatalogProps["mode"],
+  categoryId: string | undefined,
+  nextPage: number,
+  pageSize: number,
+): string {
+  if (mode === "featured") {
+    return `${API_BASE}/api/v1/products?is_featured=1&page=${nextPage}&page_size=${pageSize}`;
+  }
+  return `${API_BASE}/api/v1/products?category_id=${categoryId}&page=${nextPage}&pageSize=${pageSize}`;
 }
 
-export function ProductCatalog({
-  initialProducts,
-  categoryId,
-  locale,
-  total,
-  pageSize,
-}: ProductCatalogProps) {
+export function ProductCatalog(props: ProductCatalogProps) {
+  const { initialProducts, locale, total, pageSize, mode } = props;
+  const categoryId = mode === "category" ? props.categoryId : undefined;
+
   const t = useTranslations("products.filters");
   const [products, setProducts] = useState<Product[]>(initialProducts);
   const [page, setPage] = useState(1);
@@ -41,23 +55,29 @@ export function ProductCatalog({
 
     try {
       const nextPage = page + 1;
-      const res = await fetch(
-        `${API_BASE}/api/v1/products?category_id=${categoryId}&page=${nextPage}&pageSize=${pageSize}`,
-      );
-      const data: { products: ApiProduct[]; total: number } = await res.json();
+      const url = buildLoadMoreUrl(mode, categoryId, nextPage, pageSize);
+      const res = await fetch(url);
+      const data: {
+        products: ApiProduct[];
+        total: number;
+        page_size?: number;
+      } = await res.json();
       const mapped = (data.products ?? []).map((p: ApiProduct) =>
         mapApiProductToProduct(p, locale),
       );
 
-      setProducts((prev) => [...prev, ...mapped]);
+      setProducts((prev) => {
+        const next = [...prev, ...mapped];
+        setHasMore(next.length < data.total);
+        return next;
+      });
       setPage(nextPage);
-      setHasMore(nextPage * pageSize < data.total);
     } catch (error) {
       console.error("Failed to load more products:", error);
     } finally {
       setLoading(false);
     }
-  }, [loading, hasMore, page, categoryId, pageSize, locale]);
+  }, [loading, hasMore, page, categoryId, pageSize, locale, mode]);
 
   loadMoreRef.current = loadMore;
 
@@ -98,6 +118,7 @@ export function ProductCatalog({
             <div className="h-8 w-8 animate-spin rounded-full border-2 border-origo-accent border-t-transparent" />
           ) : (
             <button
+              type="button"
               onClick={loadMore}
               className="text-sm text-origo-muted transition hover:text-origo-accent"
             >

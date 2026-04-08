@@ -42,7 +42,8 @@
     "title": "Premium collectibles",
     "subtitle": "Mechanical models, figures, statues, and accessories — one curated catalog.",
     "shopByCategory": "Shop by category",
-    "featuredProducts": "Featured products"
+    "featuredProducts": "Featured products",
+    "seeMoreFeatured": "See more"
   },
   "about": {
     "title": "About",
@@ -86,6 +87,7 @@
     "description": "Browse all collectible products — models, figures, statues, accessories.",
     "subtitle": "Browse our full catalog of collectibles.",
     "notFound": "Product not found",
+    "featuredSubtitle": "Hand-picked highlights from our catalog.",
     "filters": {
       "brands": "Brands",
       "price": "Price",

@@ -2,6 +2,7 @@ import type { Product } from "../types";
 import { productsData } from "./data";
 import {
   fetchProductsByCategory,
+  fetchFeaturedProducts,
   fetchProductBySlug,
   fetchAllProducts,
   mapApiProductToProduct,
@@ -44,8 +45,22 @@ export async function getProductsByCategory(
     pageSize,
   );
 
+  return {
+    products: (data.products ?? []).map((p) =>
+      mapApiProductToProduct(p, locale),
+    ),
+    total: data.total,
+    page: data.page,
+    pageSize: data.page_size,
+  };
+}
 
-  console.log("data", data);
+export async function getFeaturedProducts(
+  locale: string,
+  page = 1,
+  pageSize = 7,
+): Promise<PaginatedProducts> {
+  const data = await fetchFeaturedProducts(page, pageSize);
   return {
     products: (data.products ?? []).map((p) =>
       mapApiProductToProduct(p, locale),

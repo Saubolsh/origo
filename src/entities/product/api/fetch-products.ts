@@ -121,6 +121,23 @@ export async function fetchProductsByCategory(
   return res.json();
 }
 
+export async function fetchFeaturedProducts(
+  page = 1,
+  pageSize = 7,
+): Promise<ApiProductsResponse> {
+  const url = `${normalizeApiBase()}/api/v1/products?is_featured=1&page=${page}&page_size=${pageSize}`;
+  const res = await fetch(url, {
+    next: { revalidate: 60 },
+    headers: { Accept: "application/json" },
+  });
+
+  if (!res.ok) {
+    return { page, page_size: pageSize, products: [], total: 0 };
+  }
+
+  return res.json();
+}
+
 export async function fetchProductBySlug(
   slug: string,
 ): Promise<ApiProduct | null> {

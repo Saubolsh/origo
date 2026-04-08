@@ -68,6 +68,7 @@ export default async function CategoryPage({ params }: Props) {
         <p className="mt-2 text-origo-silver">{category.description}</p>
       )}
       <ProductCatalog
+        mode="category"
         initialProducts={products}
         categoryId={category.id}
         locale={locale}
