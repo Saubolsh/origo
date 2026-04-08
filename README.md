@@ -38,6 +38,7 @@ Premium e-commerce/showroom platform for collectible products — mechanical mod
 |-------|-------------|
 | `/` | Home — categories + featured products |
 | `/products` | All products |
+| `/products/featured` | Featured products (infinite scroll) |
 | `/products/[slug]` | Product detail (template by type) |
 | `/categories` | All categories |
 | `/categories/[slug]` | Category listing |

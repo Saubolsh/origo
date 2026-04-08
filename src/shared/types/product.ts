@@ -35,6 +35,8 @@ export interface ProductBase {
   gallery: string[];
   badges?: ProductBadge[];
   specifications?: Record<string, string>;
+  /** API product attributes, ordered; slug is a stable React key. */
+  attributeRows?: { slug: string; label: string; value: string }[];
   isSoon?: boolean;
 }
 
