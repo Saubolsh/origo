@@ -1,6 +1,6 @@
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
-import { getCategories } from "@/entities/category/api";
+import { getCategories } from "@/entities/category";
 import { CategoryGrid } from "@/widgets/category-grid";
 import { canonicalUrl } from "@/shared/lib/seo-url";
 

@@ -4,8 +4,8 @@ import { getTranslations } from "next-intl/server";
 import {
   getCategoryBySlug,
   getCategorySlugStaticParams,
-} from "@/entities/category/api";
-import { getProductsByCategory } from "@/entities/product/api";
+} from "@/entities/category";
+import { getProductsByCategory } from "@/entities/product";
 import { ProductCatalog } from "@/widgets/product-catalog";
 import { canonicalUrl } from "@/shared/lib/seo-url";
 

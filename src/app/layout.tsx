@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import "@/shared/styles/globals.css";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import "@/shared/styles";
 
 export const metadata: Metadata = {
   icons: {
@@ -14,7 +15,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+        <SpeedInsights />
+      </body>
     </html>
   );
 }

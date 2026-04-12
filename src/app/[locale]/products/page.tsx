@@ -1,7 +1,7 @@
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
-import { getProducts } from "@/entities/product/api";
-import { ProductGrid } from "@/widgets/product-grid";
+import { getProducts } from "@/entities/product";
+import { ProductGrid } from "@/widgets/product-catalog";
 import { canonicalUrl } from "@/shared/lib/seo-url";
 
 export const revalidate = 60;

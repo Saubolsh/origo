@@ -1,2 +1,2 @@
-export { ProductPageContent } from "./ProductPageContent";
-export { resolveProductTemplate } from "./resolveProductTemplate";
+export { ProductPageContent } from "./ui/ProductPageContent";
+export { resolveProductTemplate } from "./ui/resolveProductTemplate";

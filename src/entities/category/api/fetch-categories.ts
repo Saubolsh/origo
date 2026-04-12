@@ -1,5 +1,5 @@
 import { cache } from "react";
-import type { Category } from "../types";
+import type { Category } from "../model";
 
 export type ApiCategory = {
   id: number;

@@ -1,10 +1,9 @@
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
-import { getProductBySlug, getAllProductSlugs } from "@/entities/product/api";
-import { ProductPageContent } from "@/widgets/product-page/ProductPageContent";
+import { getProductBySlug, getAllProductSlugs } from "@/entities/product";
+import { ProductPageContent } from "@/widgets/product-page";
 import { canonicalUrl } from "@/shared/lib/seo-url";
-import { log } from "node:console";
 
 export const revalidate = 60;
 
