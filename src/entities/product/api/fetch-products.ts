@@ -202,7 +202,17 @@ export async function fetchProductBySlug(
     headers: { Accept: "application/json" },
   });
 
-  if (!res.ok) return null;
+  if (!res.ok) {
+    if (res.status === 404) return null;
+    if (res.status >= 500) {
+      throw new Error(
+        `Product API server error (${res.status} ${res.statusText})`,
+      );
+    }
+    throw new Error(
+      `Failed to load product (${res.status} ${res.statusText})`,
+    );
+  }
 
   const product: ApiProduct = await res.json();
   if (product.slug !== slug) return null;
