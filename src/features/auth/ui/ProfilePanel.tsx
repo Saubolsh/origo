@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { AUTH_USE_MOCK } from "@/shared/config/auth";
+import { AUTH_USE_MOCK } from "@/shared/config";
 import { cn } from "@/shared/lib/cn";
 import { Button } from "@/shared/ui/Button";
 import { useAuthStore } from "../model/auth-store";

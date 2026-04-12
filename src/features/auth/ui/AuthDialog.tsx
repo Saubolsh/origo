@@ -8,7 +8,7 @@ import { z } from "zod";
 import { useTranslations } from "next-intl";
 import { cn } from "@/shared/lib/cn";
 import { Button } from "@/shared/ui/Button";
-import { AUTH_USE_MOCK } from "@/shared/config/auth";
+import { AUTH_USE_MOCK } from "@/shared/config";
 import { loginRequest, registerRequest, forgotPasswordRequest } from "../api/auth-api";
 import { useAuthStore } from "../model/auth-store";
 

@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { routing } from "@/i18n/routing";
-import { getCategories } from "@/entities/category/api";
-import { getProducts } from "@/entities/product/api";
+import { getCategories } from "@/entities/category";
+import { getProducts } from "@/entities/product";
 import { canonicalUrl } from "@/shared/lib/seo-url";
 
 export const revalidate = 3600;

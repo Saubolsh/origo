@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import "@/shared/styles/globals.css";
+import "@/shared/styles";
 
 export const metadata: Metadata = {
   icons: {

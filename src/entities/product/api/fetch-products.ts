@@ -1,4 +1,4 @@
-import type { Product, Availability } from "../types";
+import type { Product, Availability } from "../model";
 
 /** Localized API fields (nullable per locale). */
 export interface ApiLocaleStrings {

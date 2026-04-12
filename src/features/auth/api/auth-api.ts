@@ -1,4 +1,4 @@
-import { AUTH_API_BASE, AUTH_USE_MOCK } from "@/shared/config/auth";
+import { AUTH_API_BASE, AUTH_USE_MOCK } from "@/shared/config";
 import type { AuthUser } from "../model/types";
 
 function delay(ms: number) {

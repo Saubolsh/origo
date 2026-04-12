@@ -1,9 +1,9 @@
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
-import { getCategories } from "@/entities/category/api";
-import { getFeaturedProducts } from "@/entities/product/api";
+import { getCategories } from "@/entities/category";
+import { getFeaturedProducts } from "@/entities/product";
 import { CategoryGrid } from "@/widgets/category-grid";
-import { ProductGrid } from "@/widgets/product-grid";
+import { ProductGrid } from "@/widgets/product-catalog";
 import { Link } from "@/i18n/navigation";
 import { canonicalUrl } from "@/shared/lib/seo-url";
 

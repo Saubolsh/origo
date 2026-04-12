@@ -1,6 +1,6 @@
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
-import { getFeaturedProducts } from "@/entities/product/api";
+import { getFeaturedProducts } from "@/entities/product";
 import { ProductCatalog } from "@/widgets/product-catalog";
 import { canonicalUrl } from "@/shared/lib/seo-url";
 

@@ -1,2 +1,2 @@
-export { CategoryCard } from "./CategoryCard";
-export { CategoryGrid } from "./CategoryGrid";
+export { CategoryCard } from "./ui/CategoryCard";
+export { CategoryGrid } from "./ui/CategoryGrid";
