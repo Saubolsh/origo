@@ -7,10 +7,10 @@ import type { ApiProduct } from "@/entities/product/api";
 import { mapApiProductToProduct } from "@/entities/product/api";
 import { ProductGrid } from "@/widgets/product-grid";
 
-const API_BASE =
-  (
-    process.env.NEXT_PUBLIC_ORIGO_API_BASE?.trim() ?? "https://api.origo.kz"
-  ).replace(/\/$/, "");
+function loadMoreApiPath(): string {
+  const basePath = (process.env.NEXT_PUBLIC_BASE_PATH ?? "").replace(/\/$/, "");
+  return `${basePath}/api/origo/products`;
+}
 
 type ProductCatalogBaseProps = {
   initialProducts: Product[];
@@ -31,10 +31,11 @@ function buildLoadMoreUrl(
   nextPage: number,
   pageSize: number,
 ): string {
+  const path = loadMoreApiPath();
   if (mode === "featured") {
-    return `${API_BASE}/api/v1/products?is_featured=1&page=${nextPage}&page_size=${pageSize}`;
+    return `${path}?is_featured=1&page=${nextPage}&page_size=${pageSize}`;
   }
-  return `${API_BASE}/api/v1/products?category_id=${categoryId}&page=${nextPage}&pageSize=${pageSize}`;
+  return `${path}?category_id=${categoryId}&page=${nextPage}&pageSize=${pageSize}`;
 }
 
 export function ProductCatalog(props: ProductCatalogProps) {
@@ -57,6 +58,9 @@ export function ProductCatalog(props: ProductCatalogProps) {
       const nextPage = page + 1;
       const url = buildLoadMoreUrl(mode, categoryId, nextPage, pageSize);
       const res = await fetch(url);
+      if (!res.ok) {
+        throw new Error(`Load more failed (${res.status})`);
+      }
       const data: {
         products: ApiProduct[];
         total: number;

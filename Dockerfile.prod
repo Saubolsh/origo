@@ -33,6 +33,18 @@ COPY --from=builder --chown=nonroot:nonroot /app/public ./public
 COPY --from=builder --chown=nonroot:nonroot /app/.next/standalone ./
 COPY --from=builder --chown=nonroot:nonroot /app/.next/static ./.next/static
 
+# Standalone output does not trace `sharp`; copy it and its runtime deps for `/_next/image`.
+COPY --from=builder --chown=nonroot:nonroot \
+  /app/node_modules/sharp \
+  /app/node_modules/@img \
+  /app/node_modules/color \
+  /app/node_modules/color-convert \
+  /app/node_modules/color-string \
+  /app/node_modules/color-name \
+  /app/node_modules/simple-swizzle \
+  /app/node_modules/is-arrayish \
+  ./node_modules/
+
 USER nonroot
 
 EXPOSE 80
