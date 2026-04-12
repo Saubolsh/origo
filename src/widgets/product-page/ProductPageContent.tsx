@@ -1,5 +1,5 @@
 import { getLocale, getTranslations } from "next-intl/server";
-import { ProductGallery } from "@/features/product-gallery/ProductGallery";
+import { ProductPageEmblaGallery } from "@/widgets/product-page/ProductPageEmblaGallery";
 import { ProductHero } from "@/widgets/product-hero";
 import { ProductCta } from "@/widgets/product-cta";
 import { resolveProductTemplate } from "./resolveProductTemplate";
@@ -20,7 +20,7 @@ export async function ProductPageContent({ product }: ProductPageContentProps) {
     <article className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
       {/* 1. Hero + Gallery row */}
       <div className="grid min-w-0 gap-8 lg:grid-cols-2">
-        <ProductGallery
+        <ProductPageEmblaGallery
           coverImage={product.coverImage}
           gallery={product.gallery}
           productName={product.name}
