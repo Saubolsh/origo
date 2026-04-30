@@ -55,16 +55,92 @@
   },
   "about": {
     "title": "About",
-    "description": "About ORIGO — premium collectibles and showroom.",
+    "description": "ORIGO — original only: authentic collectible products with verified origin.",
     "heading": "About ORIGO",
-    "paragraph1": "ORIGO is a premium catalog for collectible products — from mechanical models and engineering kits to figures, statues, and accessories. We bring multiple categories together in one place with a consistent, product-focused experience.",
-    "paragraph2": "Our platform is built to scale: new product types and categories can be added without changing the core architecture. Every product gets a shared foundation plus type-specific details and templates."
+    "intro": {
+      "lead": "ORIGO is more than just an online store.",
+      "body": "It is access to authentic collectible products that are hard to find in the CIS region. We create a space for people who value authenticity, quality, and long-term value. At ORIGO there are no random items and no compromises - only carefully selected products from global brands."
+    },
+    "philosophy": {
+      "title": "Philosophy",
+      "lead": "We believe collectibles are not just a purchase.",
+      "body": "They are interest, emotion, and often an investment.",
+      "points": {
+        "noCopies": "no copies or replicas",
+        "noMassAssortment": "no mass assortment for quantity's sake",
+        "noQuestionableSources": "no questionable sources"
+      },
+      "tail": "Every item is selected with care. Every product has clear provenance.",
+      "onlyOriginal": "Original only."
+    },
+    "partnerships": {
+      "title": "Direct Partnerships",
+      "body": "ORIGO works directly with manufacturers and official distributors. We personally build supplier relationships, attend exhibitions, meet with companies, and organize supply without intermediaries.",
+      "benefits": {
+        "authenticity": "guarantee authenticity",
+        "quality": "control quality",
+        "rareDrops": "secure rare and limited items"
+      },
+      "exclusive": "ORIGO is an exclusive representative for a number of brands in the CIS region.",
+      "access": "That means limited access and products not available in the region's mass market."
+    },
+    "assortment": {
+      "title": "Assortment",
+      "body": "We focus on collectible categories with high value:",
+      "items": {
+        "actionFigures": "Action Figures - premium figures from leading studios",
+        "engineeringModelKits": "Engineering Model Kits - complex mechanical models",
+        "advancedBuildingSets": "Advanced Building Sets - high-end construction sets",
+        "tradingCards": "Trading Cards - authentic collectible cards (Pokemon, One Piece, etc.)"
+      },
+      "tail": "Each category is selected not by trend, but by quality, detail, and long-term value potential."
+    },
+    "approach": {
+      "title": "Approach",
+      "lead": "We do not compete with mass market. We do not aim to be \"the cheapest\".",
+      "points": {
+        "limitedSupply": "limited supply",
+        "curatedAssortment": "curated assortment",
+        "directImport": "direct import",
+        "attentionToDetail": "attention to detail"
+      },
+      "tail": "We work for people who understand the difference between a product and a collection."
+    },
+    "audience": {
+      "title": "Who ORIGO Is For",
+      "points": {
+        "collectors": "For collectors.",
+        "originalSeekers": "For those who seek originals.",
+        "rarityValue": "For those who value rarity and quality.",
+        "authenticityConfidence": "And for those who want confidence that they are buying an authentic product."
+      }
+    },
+    "closing": {
+      "title": "Conclusion",
+      "line1": "ORIGO is a choice in favor of authenticity.",
+      "line2": "A choice in favor of quality.",
+      "line3": "A choice in favor of items that truly matter.",
+      "tagline": "ORIGO - original only."
+    }
   },
   "contact": {
     "title": "Contact",
     "description": "Get in touch with ORIGO.",
     "heading": "Contact",
-    "intro": "For inquiries, wholesale, or support, reach out via the form below or email us at info@origo.kz"
+    "line1": "По всем вопросам — быстрее всего связаться с нами в Telegram.",
+    "line2": "Мы оперативно отвечаем, помогаем с подбором и принимаем заказы.",
+    "line3": "Telegram — основной канал связи ORIGO",
+    "line4": "Также вы можете написать нам на почту:",
+    "line5": "info@origo.kz",
+    "line6": "Обратите внимание:",
+    "line7": "ответ по email может занимать больше времени.",
+    "separator": "⸻",
+    "premiumLead": "💎 Более премиальная версия (если хочешь чище и короче)",
+    "premiumHeading": "Связь с ORIGO",
+    "premiumLine1": "Основной канал — Telegram.",
+    "premiumLine2": "Быстрое общение, консультации и оформление заказов.",
+    "premiumLine3": "Email: info@origo.kz",
+    "premiumLine4": "(ответ может занимать больше времени)"
   },
   "clients": {
     "title": "Our clients",
