@@ -55,10 +55,14 @@ export const fetchCategoriesJson = cache(async (): Promise<ApiCategory[]> => {
 export async function getCategorySlugStaticParams(): Promise<
   { slug: string }[]
 > {
-  const rows = await fetchCategoriesJson();
-  return [...rows]
-    .sort((a, b) => a.id - b.id)
-    .map((row) => ({ slug: row.slug }));
+  try {
+    const rows = await fetchCategoriesJson();
+    return [...rows]
+      .sort((a, b) => a.id - b.id)
+      .map((row) => ({ slug: row.slug }));
+  } catch {
+    return [];
+  }
 }
 
 export function mapApiCategoryToCategory(
