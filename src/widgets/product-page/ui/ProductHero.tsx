@@ -59,6 +59,7 @@ export function ProductHero({
     typeof product.price === "number" &&
     product.price > 0 &&
     typeof product.currency === "string";
+  const hasAnyPrice = hasMultiCurrencyPrice || hasSinglePrice;
 
   return (
     <div className={className}>
@@ -100,27 +101,29 @@ export function ProductHero({
         title={specificationsTitle}
       />
 
-      <div className="mt-6 border-t border-origo-zinc/50 pt-6">
-        <p className="text-xs font-medium uppercase tracking-wide text-origo-muted">
-          {priceLabel}
-        </p>
-        {hasMultiCurrencyPrice ? (
-          <p className="mt-1 flex flex-wrap items-baseline gap-x-3 text-2xl font-semibold tracking-tight text-origo-accent sm:text-3xl">
-            {availablePrices.map(({ key, code }, i) => (
-              <span key={code}>
-                {i > 0 && (
-                  <span className="mr-3 text-origo-zinc/50">/</span>
-                )}
-                {formatPrice(product.prices![key]!, code, locale)}
-              </span>
-            ))}
+      {hasAnyPrice ? (
+        <div className="mt-6 border-t border-origo-zinc/50 pt-6">
+          <p className="text-xs font-medium uppercase tracking-wide text-origo-muted">
+            {priceLabel}
           </p>
-        ) : hasSinglePrice ? (
-          <p className="mt-1 text-3xl font-semibold tracking-tight text-origo-accent">
-            {formatPrice(product.price!, product.currency!, locale)}
-          </p>
-        ) : null}
-      </div>
+          {hasMultiCurrencyPrice ? (
+            <p className="mt-1 flex flex-wrap items-baseline gap-x-3 text-2xl font-semibold tracking-tight text-origo-accent sm:text-3xl">
+              {availablePrices.map(({ key, code }, i) => (
+                <span key={code}>
+                  {i > 0 && (
+                    <span className="mr-3 text-origo-zinc/50">/</span>
+                  )}
+                  {formatPrice(product.prices![key]!, code, locale)}
+                </span>
+              ))}
+            </p>
+          ) : (
+            <p className="mt-1 text-3xl font-semibold tracking-tight text-origo-accent">
+              {formatPrice(product.price!, product.currency!, locale)}
+            </p>
+          )}
+        </div>
+      ) : null}
 
       <dl className="mt-6 space-y-3 text-sm">
         <div className="grid gap-1 sm:grid-cols-[minmax(0,7rem)_1fr] sm:items-baseline sm:gap-x-4">
