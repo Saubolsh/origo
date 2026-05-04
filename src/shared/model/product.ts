@@ -11,9 +11,9 @@ export type Availability = "in-stock" | "preorder" | "out-of-stock";
 export type ProductBadge = "New" | "Limited" | "Best Seller" | "Exclusive";
 
 export interface MultiCurrencyPrices {
-  kzt: number;
-  rub: number;
-  usd: number;
+  kzt?: number;
+  rub?: number;
+  usd?: number;
 }
 
 export interface ProductBase {
@@ -22,10 +22,11 @@ export interface ProductBase {
   slug: string;
   shortDescription?: string;
   description: string;
-  /** Price in minor units (e.g. cents). */
-  price: number;
-  currency: string;
-  /** All three currency prices in minor units when available from the API. */
+  /** Price in minor units (e.g. cents), when available. */
+  price?: number;
+  /** ISO currency code for `price`, when available. */
+  currency?: string;
+  /** Currency prices in minor units when available from the API. */
   prices?: MultiCurrencyPrices;
   brand: string;
   categoryId: string;

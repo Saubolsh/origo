@@ -46,6 +46,16 @@ export function ProductHero({
   specificationsTitle,
   className,
 }: ProductHeroProps) {
+  const availablePrices = CURRENCY_ORDER.filter(
+    ({ key }) =>
+      typeof product.prices?.[key] === "number" && product.prices[key]! > 0,
+  );
+  const hasMultiCurrencyPrice = availablePrices.length > 0;
+  const hasSinglePrice =
+    typeof product.price === "number" &&
+    product.price > 0 &&
+    typeof product.currency === "string";
+
   return (
     <div className={className}>
       {/* In-stock + Best Seller / promo badges — disabled for now
@@ -83,22 +93,22 @@ export function ProductHero({
         <p className="text-xs font-medium uppercase tracking-wide text-origo-muted">
           {priceLabel}
         </p>
-        {product.prices ? (
+        {hasMultiCurrencyPrice ? (
           <p className="mt-1 flex flex-wrap items-baseline gap-x-3 text-2xl font-semibold tracking-tight text-origo-accent sm:text-3xl">
-            {CURRENCY_ORDER.map(({ key, code }, i) => (
+            {availablePrices.map(({ key, code }, i) => (
               <span key={code}>
                 {i > 0 && (
                   <span className="mr-3 text-origo-zinc/50">/</span>
                 )}
-                {formatPrice(product.prices![key], code, locale)}
+                {formatPrice(product.prices![key]!, code, locale)}
               </span>
             ))}
           </p>
-        ) : (
+        ) : hasSinglePrice ? (
           <p className="mt-1 text-3xl font-semibold tracking-tight text-origo-accent">
             {formatPrice(product.price, product.currency, locale)}
           </p>
-        )}
+        ) : null}
       </div>
 
       <dl className="mt-6 space-y-3 text-sm">

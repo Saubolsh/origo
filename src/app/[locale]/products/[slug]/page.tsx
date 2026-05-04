@@ -63,6 +63,9 @@ export default async function ProductPage({ params }: Props) {
         ? "https://schema.org/PreOrder"
         : "https://schema.org/OutOfStock";
 
+  const hasOfferPrice =
+    typeof product.price === "number" && typeof product.currency === "string";
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -74,13 +77,17 @@ export default async function ProductPage({ params }: Props) {
       "@type": "Brand",
       name: product.brand,
     },
-    offers: {
-      "@type": "Offer",
-      priceCurrency: product.currency,
-      price: product.price,
-      availability: availabilityUrl,
-      url: canonical,
-    },
+    ...(hasOfferPrice
+      ? {
+          offers: {
+            "@type": "Offer",
+            priceCurrency: product.currency,
+            price: product.price,
+            availability: availabilityUrl,
+            url: canonical,
+          },
+        }
+      : {}),
   };
 
   return (
