@@ -35,6 +35,10 @@ interface ProductHeroProps {
   locale: string;
 }
 
+function containsHtml(value: string): boolean {
+  return /<\/?[a-z][\s\S]*>/i.test(value);
+}
+
 export function ProductHero({
   brandLabel,
   category,
@@ -76,9 +80,16 @@ export function ProductHero({
       ) : null}
 
       {product.description ? (
-        <p className="mt-4 max-w-prose text-sm leading-relaxed text-origo-white/90 sm:text-base">
-          {product.description}
-        </p>
+        containsHtml(product.description) ? (
+          <div
+            className="mt-4 max-w-prose text-sm leading-relaxed text-origo-white/90 sm:text-base [&>p]:mb-3 [&>p:last-child]:mb-0"
+            dangerouslySetInnerHTML={{ __html: product.description }}
+          />
+        ) : (
+          <p className="mt-4 max-w-prose text-sm leading-relaxed text-origo-white/90 sm:text-base">
+            {product.description}
+          </p>
+        )
       ) : null}
 
       <ProductSpecifications
