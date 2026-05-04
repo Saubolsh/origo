@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
 
@@ -46,6 +47,19 @@ export default async function AboutPage({ params }: Props) {
       <section className="mt-6 rounded-2xl border border-origo-zinc bg-origo-charcoal/70 p-6 sm:p-8">
         <p className="text-lg leading-8 text-origo-silver">{t("intro.lead")}</p>
         <p className="mt-4 leading-7 text-origo-silver">{t("intro.body")}</p>
+
+        <div className="group relative mt-6 overflow-hidden rounded-2xl border border-origo-zinc/80">
+          <div className="relative aspect-[16/9]">
+            <Image
+              src="/images/one.jpg"
+              alt="Team members shaking hands in the collectibles showroom surrounded by display pieces."
+              fill
+              priority
+              sizes="(min-width: 1024px) 60rem, (min-width: 640px) 90vw, 100vw"
+              className="object-cover transition duration-500 ease-out group-hover:scale-[1.03] group-hover:brightness-110"
+            />
+          </div>
+        </div>
       </section>
 
       <div className="mt-8 grid gap-6">
@@ -72,6 +86,18 @@ export default async function AboutPage({ params }: Props) {
           </ul>
           <p className="mt-4 leading-7 text-origo-silver">{t("partnerships.exclusive")}</p>
           <p className="mt-2 leading-7 text-origo-silver">{t("partnerships.access")}</p>
+
+          <div className="group relative mt-6 overflow-hidden rounded-xl border border-origo-zinc/80">
+            <div className="relative aspect-[16/10]">
+              <Image
+                src="/images/two.jpg"
+                alt="Another showroom handshake moment in front of curated premium display models."
+                fill
+                sizes="(min-width: 1024px) 60rem, (min-width: 640px) 90vw, 100vw"
+                className="object-cover transition duration-500 ease-out group-hover:scale-[1.03] group-hover:brightness-110"
+              />
+            </div>
+          </div>
         </section>
 
         <section className="rounded-2xl border border-origo-zinc bg-origo-charcoal/70 p-6">
@@ -117,6 +143,19 @@ export default async function AboutPage({ params }: Props) {
         <p className="mt-4 leading-7 text-origo-silver">{t("closing.line1")}</p>
         <p className="leading-7 text-origo-silver">{t("closing.line2")}</p>
         <p className="leading-7 text-origo-silver">{t("closing.line3")}</p>
+
+        <div className="group relative mx-auto mt-6 max-w-3xl overflow-hidden rounded-2xl border border-origo-zinc/80">
+          <div className="relative aspect-[16/9]">
+            <Image
+              src="/images/three.jpg"
+              alt="Team photo beside engineering model kits and large-scale mechanical builds."
+              fill
+              sizes="(min-width: 1024px) 48rem, (min-width: 640px) 90vw, 100vw"
+              className="object-cover transition duration-500 ease-out group-hover:scale-[1.03] group-hover:brightness-110"
+            />
+          </div>
+        </div>
+
         <p className="mt-4 text-lg font-semibold tracking-wide text-origo-white">
           {t("closing.tagline")}
         </p>

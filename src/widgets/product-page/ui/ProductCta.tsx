@@ -7,9 +7,11 @@ interface ProductCtaProps {
 }
 
 export function ProductCta({ product, className }: ProductCtaProps) {
+  const hasPrice = typeof product.price === "number";
+
   return (
     <div className={className}>
-      <AddToCartButton productName={product.name} />
-      </div>
+      <AddToCartButton productName={product.name} showOrder={!hasPrice} />
+    </div>
   );
 }

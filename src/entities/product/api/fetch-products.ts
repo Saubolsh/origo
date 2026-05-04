@@ -22,7 +22,7 @@ export interface ApiProduct {
   name: { en: string; kk: string; ru: string };
   slug: string;
   description: ApiLocaleStrings | string | null;
-  price: { kzt: number; rub: number; usd: number };
+  price?: { kzt?: number; rub?: number; usd?: number } | null;
   stock: number;
   category_id: number;
   is_active: boolean;
@@ -53,7 +53,7 @@ function normalizeApiBase(): string {
 }
 
 function localeToCurrency(locale: string): {
-  key: keyof ApiProduct["price"];
+  key: "kzt" | "rub" | "usd";
   code: string;
 } {
   if (locale === "kz" || locale === "kk") return { key: "kzt", code: "KZT" };
@@ -129,19 +129,39 @@ export function mapApiProductToProduct(
   const description = fromDescription || fromContent;
   const attributeRows = mapAttributeRows(raw, nameKey);
 
+  const rawPrices = raw.price ?? undefined;
+  const mappedPrices = rawPrices
+    ? {
+        ...(typeof rawPrices.kzt === "number" && rawPrices.kzt > 0
+          ? { kzt: rawPrices.kzt * 100 }
+          : {}),
+        ...(typeof rawPrices.rub === "number" && rawPrices.rub > 0
+          ? { rub: rawPrices.rub * 100 }
+          : {}),
+        ...(typeof rawPrices.usd === "number" && rawPrices.usd > 0
+          ? { usd: rawPrices.usd * 100 }
+          : {}),
+      }
+    : undefined;
+  const hasMappedPrices = mappedPrices && Object.keys(mappedPrices).length > 0;
+  const selectedPrice = rawPrices?.[priceKey];
+  const fallbackPrice = rawPrices?.usd;
+  const resolvedPrice =
+    typeof selectedPrice === "number" && selectedPrice > 0
+      ? selectedPrice * 100
+      : typeof fallbackPrice === "number" && fallbackPrice > 0
+        ? fallbackPrice * 100
+        : undefined;
+
   return {
     id: String(raw.id),
     name: raw.name[nameKey] || raw.name.en || "",
     slug: raw.slug,
     description,
     attributeRows: attributeRows.length ? attributeRows : undefined,
-    price: (raw.price[priceKey] ?? raw.price.usd) * 100,
-    currency: currencyCode,
-    prices: {
-      kzt: (raw.price.kzt ?? 0) * 100,
-      rub: (raw.price.rub ?? 0) * 100,
-      usd: (raw.price.usd ?? 0) * 100,
-    },
+    price: resolvedPrice,
+    currency: resolvedPrice != null ? currencyCode : undefined,
+    prices: hasMappedPrices ? mappedPrices : undefined,
     brand: pickBrand(raw.brand_name, nameKey),
     categoryId: String(raw.category_id),
     sku: raw.sku || "",

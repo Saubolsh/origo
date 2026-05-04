@@ -36,7 +36,8 @@
       "privacyPolicy": "Политика конфиденциальности",
       "consentOrigo": "Согласие Origo",
       "publicOffer": "Публичная оферта"
-    }
+    },
+    "order": "Заказать"
   },
   "errors": {
     "notFoundTitle": "Страница не найдена",

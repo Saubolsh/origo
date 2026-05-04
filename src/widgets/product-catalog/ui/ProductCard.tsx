@@ -26,6 +26,15 @@ interface ProductCardProps {
 
 export function ProductCard({ product, className }: ProductCardProps) {
   const t = useTranslations("common");
+  const availablePrices = CURRENCY_ORDER.filter(
+    ({ key }) =>
+      typeof product.prices?.[key] === "number" && product.prices[key]! > 0,
+  );
+  const hasMultiCurrencyPrice = availablePrices.length > 0;
+  const hasSinglePrice =
+    typeof product.price === "number" &&
+    product.price > 0 &&
+    typeof product.currency === "string";
 
   const Wrapper = product.isSoon ? "div" : Link;
   const wrapperProps = product.isSoon
@@ -36,7 +45,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
     <Wrapper
       {...(wrapperProps as any)}
       className={cn(
-        "group flex flex-col overflow-hidden rounded-lg border border-origo-zinc bg-origo-slate transition",
+        "group flex h-full flex-col overflow-hidden rounded-lg border border-origo-zinc bg-origo-slate transition",
         !product.isSoon &&
           "hover:border-origo-accent/50 hover:shadow-lg hover:shadow-origo-accent/5",
         product.isSoon && "pointer-events-auto cursor-default",
@@ -86,22 +95,22 @@ export function ProductCard({ product, className }: ProductCardProps) {
             {product.shortDescription}
           </p>
         )}
-        {product.prices ? (
+        {hasMultiCurrencyPrice ? (
           <p className="mt-auto flex flex-wrap items-baseline gap-x-2 pt-3 text-sm font-semibold text-origo-accent sm:text-base">
-            {CURRENCY_ORDER.map(({ key, code }, i) => (
+            {availablePrices.map(({ key, code }, i) => (
               <span key={code}>
                 {i > 0 && (
                   <span className="mr-2 text-origo-zinc/50">/</span>
                 )}
-                {formatPrice(product.prices![key], code)}
+                {formatPrice(product.prices![key]!, code)}
               </span>
             ))}
           </p>
-        ) : (
+        ) : hasSinglePrice ? (
           <p className="mt-auto pt-3 text-lg font-semibold text-origo-accent">
-            {formatPrice(product.price, product.currency)}
+            {formatPrice(product.price!, product.currency!)}
           </p>
-        )}
+        ) : null}
       </div>
     </Wrapper>
   );
