@@ -7,10 +7,15 @@ const ORIGO_TELEGRAM_ORDER_URL = "https://t.me/origo_kz?direct";
 
 interface AddToCartButtonProps {
   productName: string;
+  showOrder?: boolean;
   className?: string;
 }
 
-export function AddToCartButton({ productName, className }: AddToCartButtonProps) {
+export function AddToCartButton({
+  productName,
+  showOrder = false,
+  className,
+}: AddToCartButtonProps) {
   const t = useTranslations("common");
 
   return (
@@ -24,7 +29,7 @@ export function AddToCartButton({ productName, className }: AddToCartButtonProps
       )}
       aria-label={t("buyTelegramAria", { productName })}
     >
-      {t("buy")}
+      {t(showOrder ? "order" : "buy")}
     </a>
   );
 }

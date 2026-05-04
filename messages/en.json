@@ -36,7 +36,8 @@
       "privacyPolicy": "Privacy policy",
       "consentOrigo": "ORIGO consent",
       "publicOffer": "Public offer"
-    }
+    },
+    "order": "Order"
   },
   "errors": {
     "notFoundTitle": "Page not found",

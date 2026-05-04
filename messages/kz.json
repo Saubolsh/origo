@@ -36,7 +36,8 @@
       "privacyPolicy": "Құпиялылық саясаты",
       "consentOrigo": "ORIGO келісімі",
       "publicOffer": "Жария оферта"
-    }
+    },
+    "order": "Тапсырыс беру"
   },
   "errors": {
     "notFoundTitle": "Бет табылмады",
@@ -243,4 +244,3 @@
     "specificationsTitle": "Сипаттамалары"
   }
 }
-
