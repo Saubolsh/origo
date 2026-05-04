@@ -108,7 +108,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
           </p>
         ) : hasSinglePrice ? (
           <p className="mt-auto pt-3 text-lg font-semibold text-origo-accent">
-            {formatPrice(product.price, product.currency)}
+            {formatPrice(product.price!, product.currency!)}
           </p>
         ) : null}
       </div>

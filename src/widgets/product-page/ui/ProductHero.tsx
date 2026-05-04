@@ -106,7 +106,7 @@ export function ProductHero({
           </p>
         ) : hasSinglePrice ? (
           <p className="mt-1 text-3xl font-semibold tracking-tight text-origo-accent">
-            {formatPrice(product.price, product.currency, locale)}
+            {formatPrice(product.price!, product.currency!, locale)}
           </p>
         ) : null}
       </div>
