@@ -20,8 +20,8 @@ export function ProductGrid({ products, className }: ProductGridProps) {
       role="list"
     >
       {products.map((product) => (
-        <li key={product.id}>
-          <ProductCard product={product} />
+        <li key={product.id} className="h-full">
+          <ProductCard product={product} className="h-full" />
         </li>
       ))}
     </ul>

@@ -45,7 +45,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
     <Wrapper
       {...(wrapperProps as any)}
       className={cn(
-        "group flex flex-col overflow-hidden rounded-lg border border-origo-zinc bg-origo-slate transition",
+        "group flex h-full flex-col overflow-hidden rounded-lg border border-origo-zinc bg-origo-slate transition",
         !product.isSoon &&
           "hover:border-origo-accent/50 hover:shadow-lg hover:shadow-origo-accent/5",
         product.isSoon && "pointer-events-auto cursor-default",
