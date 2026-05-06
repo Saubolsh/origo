@@ -17,12 +17,15 @@ export interface ApiProductAttribute {
   value: string;
 }
 
+/** Backend may send amounts as numbers or numeric strings (major units). */
+export type ApiPriceValue = number | string;
+
 export interface ApiProduct {
   id: number;
   name: { en: string; kk: string; ru: string };
   slug: string;
   description: ApiLocaleStrings | string | null;
-  price?: { kzt?: number; rub?: number; usd?: number } | null;
+  price?: { kzt?: ApiPriceValue; rub?: ApiPriceValue; usd?: ApiPriceValue } | null;
   stock: number;
   category_id: number;
   is_active: boolean;
@@ -32,7 +35,7 @@ export interface ApiProduct {
   sku: string;
   brand_id: number;
   content: ApiLocaleStrings | string | null;
-  old_price: { kzt: number; rub: number; usd: number } | null;
+  old_price: { kzt: ApiPriceValue; rub: ApiPriceValue; usd: ApiPriceValue } | null;
   file_name: string;
   images: string[];
   is_soon?: boolean;
@@ -52,12 +55,41 @@ function normalizeApiBase(): string {
   return raw.replace(/\/$/, "");
 }
 
+/**
+ * Parses a single API price field into a positive amount in major currency units.
+ * Accepts finite numbers or strings (optional grouping commas / spaces stripped).
+ */
+function coercePositiveMajorPrice(value: unknown): number | undefined {
+  if (value == null) return undefined;
+  if (typeof value === "number") {
+    if (!Number.isFinite(value) || value <= 0) return undefined;
+    return value;
+  }
+  if (typeof value === "string") {
+    const normalized = value
+      .trim()
+      .replace(/[\s\u00A0]/g, "")
+      .replace(/'/g, "")
+      .replace(/,/g, "");
+    if (!normalized) return undefined;
+    const n = Number(normalized);
+    if (!Number.isFinite(n) || n <= 0) return undefined;
+    return n;
+  }
+  return undefined;
+}
+
+function majorToMinorUnits(major: number): number {
+  return Math.round(major * 100);
+}
+
 function localeToCurrency(locale: string): {
   key: "kzt" | "rub" | "usd";
   code: string;
 } {
   if (locale === "kz" || locale === "kk") return { key: "kzt", code: "KZT" };
-  if (locale === "ru") return { key: "rub", code: "RUB" };
+  // RU locale still targets KZT pricing; RUB is not shown in UI.
+  if (locale === "ru") return { key: "kzt", code: "KZT" };
   return { key: "usd", code: "USD" };
 }
 
@@ -130,28 +162,23 @@ export function mapApiProductToProduct(
   const attributeRows = mapAttributeRows(raw, nameKey);
 
   const rawPrices = raw.price ?? undefined;
+  const kztMajor = coercePositiveMajorPrice(rawPrices?.kzt);
+  const rubMajor = coercePositiveMajorPrice(rawPrices?.rub);
+  const usdMajor = coercePositiveMajorPrice(rawPrices?.usd);
   const mappedPrices = rawPrices
     ? {
-        ...(typeof rawPrices.kzt === "number" && rawPrices.kzt > 0
-          ? { kzt: rawPrices.kzt * 100 }
-          : {}),
-        ...(typeof rawPrices.rub === "number" && rawPrices.rub > 0
-          ? { rub: rawPrices.rub * 100 }
-          : {}),
-        ...(typeof rawPrices.usd === "number" && rawPrices.usd > 0
-          ? { usd: rawPrices.usd * 100 }
-          : {}),
+        ...(kztMajor != null ? { kzt: majorToMinorUnits(kztMajor) } : {}),
+        ...(rubMajor != null ? { rub: majorToMinorUnits(rubMajor) } : {}),
+        ...(usdMajor != null ? { usd: majorToMinorUnits(usdMajor) } : {}),
       }
     : undefined;
   const hasMappedPrices = mappedPrices && Object.keys(mappedPrices).length > 0;
-  const selectedPrice = rawPrices?.[priceKey];
-  const fallbackPrice = rawPrices?.usd;
+  const selectedMajor = coercePositiveMajorPrice(rawPrices?.[priceKey]);
+  const fallbackMajor = coercePositiveMajorPrice(rawPrices?.usd);
+  const resolvedMajor =
+    selectedMajor != null ? selectedMajor : fallbackMajor;
   const resolvedPrice =
-    typeof selectedPrice === "number" && selectedPrice > 0
-      ? selectedPrice * 100
-      : typeof fallbackPrice === "number" && fallbackPrice > 0
-        ? fallbackPrice * 100
-        : undefined;
+    resolvedMajor != null ? majorToMinorUnits(resolvedMajor) : undefined;
 
   return {
     id: String(raw.id),

@@ -19,7 +19,6 @@ function formatPrice(
 
 const CURRENCY_ORDER = [
   { key: "kzt" as const, code: "KZT" },
-  { key: "rub" as const, code: "RUB" },
   { key: "usd" as const, code: "USD" },
 ];
 
