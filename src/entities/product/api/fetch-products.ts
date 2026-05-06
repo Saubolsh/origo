@@ -88,7 +88,8 @@ function localeToCurrency(locale: string): {
   code: string;
 } {
   if (locale === "kz" || locale === "kk") return { key: "kzt", code: "KZT" };
-  if (locale === "ru") return { key: "rub", code: "RUB" };
+  // RU locale still targets KZT pricing; RUB is not shown in UI.
+  if (locale === "ru") return { key: "kzt", code: "KZT" };
   return { key: "usd", code: "USD" };
 }
 

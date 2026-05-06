@@ -15,7 +15,6 @@ function formatPrice(price: number, currency: string): string {
 
 const CURRENCY_ORDER = [
   { key: "kzt" as const, code: "KZT" },
-  { key: "rub" as const, code: "RUB" },
   { key: "usd" as const, code: "USD" },
 ];
 
