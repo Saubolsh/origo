@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
+import { ProductPageEmblaGallery } from "@/widgets/product-page/ui/ProductPageEmblaGallery";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -38,6 +38,20 @@ export default async function AboutPage({ params }: Props) {
     t("partnerships.benefits.rareDrops"),
   ];
 
+  const companyCarouselImages = [
+    "/images/one.jpg",
+    "/images/two.jpg",
+    "/images/three.jpg",
+  ];
+
+  const factoryCarouselImages = [
+    "/images/fac_one.jpg",
+    "/images/fac_two.jpg",
+    "/images/fac_three.jpg",
+    "/images/fac_four.jpg",
+    "/images/fac_five.jpg",
+  ];
+
   return (
     <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
       <h1 className="text-3xl font-bold tracking-tight text-origo-white sm:text-4xl">
@@ -48,17 +62,12 @@ export default async function AboutPage({ params }: Props) {
         <p className="text-lg leading-8 text-origo-silver">{t("intro.lead")}</p>
         <p className="mt-4 leading-7 text-origo-silver">{t("intro.body")}</p>
 
-        <div className="group relative mt-6 overflow-hidden rounded-2xl border border-origo-zinc/80">
-          <div className="relative aspect-[16/9]">
-            <Image
-              src="/images/one.jpg"
-              alt="Team members shaking hands in the collectibles showroom surrounded by display pieces."
-              fill
-              priority
-              sizes="(min-width: 1024px) 60rem, (min-width: 640px) 90vw, 100vw"
-              className="object-cover transition duration-500 ease-out group-hover:scale-[1.03] group-hover:brightness-110"
-            />
-          </div>
+        <div className="mt-6">
+          <ProductPageEmblaGallery
+            coverImage={companyCarouselImages[0]!}
+            gallery={companyCarouselImages}
+            productName="Company story"
+          />
         </div>
       </section>
 
@@ -87,17 +96,6 @@ export default async function AboutPage({ params }: Props) {
           <p className="mt-4 leading-7 text-origo-silver">{t("partnerships.exclusive")}</p>
           <p className="mt-2 leading-7 text-origo-silver">{t("partnerships.access")}</p>
 
-          <div className="group relative mt-6 overflow-hidden rounded-xl border border-origo-zinc/80">
-            <div className="relative aspect-[16/10]">
-              <Image
-                src="/images/two.jpg"
-                alt="Another showroom handshake moment in front of curated premium display models."
-                fill
-                sizes="(min-width: 1024px) 60rem, (min-width: 640px) 90vw, 100vw"
-                className="object-cover transition duration-500 ease-out group-hover:scale-[1.03] group-hover:brightness-110"
-              />
-            </div>
-          </div>
         </section>
 
         <section className="rounded-2xl border border-origo-zinc bg-origo-charcoal/70 p-6">
@@ -144,16 +142,12 @@ export default async function AboutPage({ params }: Props) {
         <p className="leading-7 text-origo-silver">{t("closing.line2")}</p>
         <p className="leading-7 text-origo-silver">{t("closing.line3")}</p>
 
-        <div className="group relative mx-auto mt-6 max-w-3xl overflow-hidden rounded-2xl border border-origo-zinc/80">
-          <div className="relative aspect-[16/9]">
-            <Image
-              src="/images/three.jpg"
-              alt="Team photo beside engineering model kits and large-scale mechanical builds."
-              fill
-              sizes="(min-width: 1024px) 48rem, (min-width: 640px) 90vw, 100vw"
-              className="object-cover transition duration-500 ease-out group-hover:scale-[1.03] group-hover:brightness-110"
-            />
-          </div>
+        <div className="mx-auto mt-6 max-w-3xl">
+          <ProductPageEmblaGallery
+            coverImage={factoryCarouselImages[0]!}
+            gallery={factoryCarouselImages}
+            productName="Factory visit"
+          />
         </div>
 
         <p className="mt-4 text-lg font-semibold tracking-wide text-origo-white">
