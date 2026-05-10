@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import { cn } from "@/shared/lib/cn";
+import { trackClick } from "@/shared/lib/gtag";
 import {
   AuthDialog,
   type AuthDialogTab,
@@ -58,6 +59,7 @@ export function Header() {
             <Link
               key={href}
               href={href}
+              onClick={() => trackClick("click_nav", { item: t(key), href })}
               className={cn(
                 "text-sm font-medium text-origo-silver transition hover:text-origo-white",
                 isActive(href) && "text-origo-white"

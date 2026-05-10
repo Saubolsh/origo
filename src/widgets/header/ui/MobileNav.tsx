@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Link, usePathname } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import { cn } from "@/shared/lib/cn";
+import { trackClick } from "@/shared/lib/gtag";
 import { useAuthStore, type AuthDialogTab } from "@/features/auth";
 import { LocaleSwitcher } from "./LocaleSwitcher";
 
@@ -145,7 +146,10 @@ export function MobileNav({ open, onClose, onOpenAuth }: MobileNavProps) {
                 <Link
                   key={href}
                   href={href}
-                  onClick={onClose}
+                  onClick={() => {
+                    trackClick("click_nav", { item: t(key), href, source: "mobile" });
+                    onClose();
+                  }}
                   aria-current={isActive(href) ? "page" : undefined}
                   className={cn(
                     "rounded-lg border border-transparent px-4 py-3 text-base font-medium text-origo-silver transition hover:bg-origo-zinc hover:text-origo-white",
