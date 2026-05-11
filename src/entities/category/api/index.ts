@@ -1,15 +1,30 @@
 import type { Category } from "../model";
 import {
-  fetchCategoriesJson,
+  fetchCategoriesTreeJson,
   mapApiCategoryToCategory,
 } from "./fetch-categories";
 
-export { getCategorySlugStaticParams } from "./fetch-categories";
+export {
+  getCategorySlugStaticParams,
+  getCategoryChildSlugStaticParams,
+} from "./fetch-categories";
+
+function* flattenCategories(
+  categories: Category[]
+): Generator<Category, void, void> {
+  for (const category of categories) {
+    yield category;
+    if (category.children.length > 0) {
+      yield* flattenCategories(category.children);
+    }
+  }
+}
 
 export async function getCategories(locale: string): Promise<Category[]> {
-  const rows = await fetchCategoriesJson();
-  const sorted = [...rows].sort((a, b) => a.id - b.id);
-  return sorted.map((row) => mapApiCategoryToCategory(row, locale));
+  const rows = await fetchCategoriesTreeJson();
+  return [...rows]
+    .sort((a, b) => a.id - b.id)
+    .map((row) => mapApiCategoryToCategory(row, locale));
 }
 
 export async function getCategoryBySlug(
@@ -17,7 +32,10 @@ export async function getCategoryBySlug(
   locale: string
 ): Promise<Category | null> {
   const categories = await getCategories(locale);
-  return categories.find((c) => c.slug === slug) ?? null;
+  for (const category of flattenCategories(categories)) {
+    if (category.slug === slug) return category;
+  }
+  return null;
 }
 
 export async function getCategoryById(
@@ -25,5 +43,25 @@ export async function getCategoryById(
   locale: string
 ): Promise<Category | null> {
   const categories = await getCategories(locale);
-  return categories.find((c) => c.id === id) ?? null;
+  for (const category of flattenCategories(categories)) {
+    if (category.id === id) return category;
+  }
+  return null;
+}
+
+export async function getCategoryBySlugPath(
+  path: string[],
+  locale: string
+): Promise<Category | null> {
+  if (path.length === 0) return null;
+  const categories = await getCategories(locale);
+  for (const category of flattenCategories(categories)) {
+    if (
+      category.slugPath.length === path.length &&
+      category.slugPath.every((segment, idx) => segment === path[idx])
+    ) {
+      return category;
+    }
+  }
+  return null;
 }

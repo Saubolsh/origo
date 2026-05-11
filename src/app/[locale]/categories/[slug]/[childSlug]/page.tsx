@@ -2,33 +2,36 @@ import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
 import {
-  getCategoryBySlug,
-  getCategorySlugStaticParams,
+  getCategoryBySlugPath,
+  getCategoryChildSlugStaticParams,
 } from "@/entities/category";
 import { getProductsByCategory } from "@/entities/product";
 import { ProductCatalog } from "@/widgets/product-catalog";
-import { CategoryGrid } from "@/widgets/category-grid";
 import { canonicalUrl } from "@/shared/lib/seo-url";
 
 export const revalidate = 60;
 
-type Props = { params: Promise<{ locale: string; slug: string }> };
+type Props = {
+  params: Promise<{ locale: string; slug: string; childSlug: string }>;
+};
 
 export async function generateStaticParams() {
-  return getCategorySlugStaticParams();
+  const pairs = await getCategoryChildSlugStaticParams();
+  return pairs.map(({ parentSlug, childSlug }) => ({
+    slug: parentSlug,
+    childSlug,
+  }));
 }
 
 export async function generateMetadata({ params }: Props) {
-  const { locale, slug } = await params;
-  const category = await getCategoryBySlug(slug, locale);
+  const { locale, slug, childSlug } = await params;
+  const category = await getCategoryBySlugPath([slug, childSlug], locale);
   const t = await getTranslations({ locale, namespace: "categories" });
-  if (!category || category.slugPath.length !== 1) {
-    return { title: t("notFound") };
-  }
+  if (!category) return { title: t("notFound") };
 
   const canonical = canonicalUrl(
     locale,
-    `/categories/${category.slugPath.join("/")}/`,
+    `/categories/${slug}/${childSlug}/`,
   );
   const title = category.name;
   const description = category.description;
@@ -53,31 +56,12 @@ export async function generateMetadata({ params }: Props) {
   };
 }
 
-export default async function CategoryPage({ params }: Props) {
-  const { locale, slug } = await params;
+export default async function SubcategoryPage({ params }: Props) {
+  const { locale, slug, childSlug } = await params;
   setRequestLocale(locale);
 
-  const category = await getCategoryBySlug(slug, locale);
-  if (!category || category.slugPath.length !== 1) notFound();
-
-  const hasSubcategories = category.children.length > 0;
-
-  if (hasSubcategories) {
-    return (
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold tracking-tight text-origo-white">
-          {category.name}
-        </h1>
-        {category.description && (
-          <p className="mt-2 text-origo-silver">{category.description}</p>
-        )}
-        <CategoryGrid
-          categories={category.children}
-          className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
-        />
-      </div>
-    );
-  }
+  const category = await getCategoryBySlugPath([slug, childSlug], locale);
+  if (!category) notFound();
 
   const { products, total, pageSize } = await getProductsByCategory(
     category.id,
