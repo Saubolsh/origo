@@ -1,7 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { cn } from "@/shared/lib/cn";
+import { trackClick } from "@/shared/lib/gtag";
 import type { Product } from "@/entities/product";
 
 function formatPrice(price: number, currency: string): string {
@@ -43,6 +46,11 @@ export function ProductCard({ product, className }: ProductCardProps) {
   return (
     <Wrapper
       {...(wrapperProps as any)}
+      onClick={() => {
+        if (!product.isSoon) {
+          trackClick("click_product", { name: product.name, slug: product.slug });
+        }
+      }}
       className={cn(
         "group flex h-full flex-col overflow-hidden rounded-lg border border-origo-zinc bg-origo-slate transition",
         !product.isSoon &&

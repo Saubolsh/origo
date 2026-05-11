@@ -28,6 +28,7 @@ FROM gcr.io/distroless/nodejs20-debian12 AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
+ENV NEXT_PUBLIC_GA_ID=G-8KD0PRLG1W
 
 COPY --from=builder --chown=nonroot:nonroot /app/public ./public
 COPY --from=builder --chown=nonroot:nonroot /app/.next/standalone ./
