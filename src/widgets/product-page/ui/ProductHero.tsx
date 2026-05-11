@@ -142,7 +142,7 @@ export function ProductHero({
             <dt className="text-origo-muted">{categoryLabel}</dt>
             <dd>
               <Link
-                href={`/categories/${category.slug}`}
+                href={`/categories/${category.slugPath.join("/")}`}
                 className="font-medium text-origo-accent hover:underline"
               >
                 {category.name}

@@ -12,10 +12,18 @@ interface CategoryCardProps {
 }
 
 export function CategoryCard({ category, className }: CategoryCardProps) {
+  const href = `/categories/${category.slugPath.join("/")}`;
+
   return (
     <Link
-      href={`/categories/${category.slug}`}
-      onClick={() => trackClick("click_category", { name: category.name, slug: category.slug })}
+      href={href}
+      onClick={() =>
+        trackClick("click_category", {
+          name: category.name,
+          slug: category.slug,
+          path: category.slugPath.join("/"),
+        })
+      }
       className={cn(
         "group relative flex flex-col overflow-hidden rounded-lg border border-origo-zinc bg-origo-slate transition hover:border-origo-accent/50 hover:shadow-lg hover:shadow-origo-accent/5",
         className
